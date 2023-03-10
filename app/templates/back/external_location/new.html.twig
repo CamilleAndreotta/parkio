@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ExternalLocation{% endblock %}
+
+{% block body %}
+    <h1>Create new ExternalLocation</h1>
+
+    {{ include('back/external_location/_form.html.twig') }}
+
+    <a href="{{ path('app_back_external_location_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExternalLocation index{% endblock %}
+
+{% block body %}
+    <h1>ExternalLocation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ExternalUser</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>DateStart</th>
+                <th>DateEnd</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for external_location in external_locations %}
+            <tr>
+                <td>{{ external_location.id }}</td>
+                <td>{{ external_location.externalUser }}</td>
+                <td>{{ external_location.email }}</td>
+                <td>{{ external_location.phone }}</td>
+                <td>{{ external_location.message }}</td>
+                <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
+                <td>{{ external_location.dateEnd ? external_location.dateEnd|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">show</a>
+                    <a href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_external_location_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExternalLocation{% endblock %}
+
+{% block body %}
+    <h1>ExternalLocation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ external_location.id }}</td>
+            </tr>
+            <tr>
+                <th>ExternalUser</th>
+                <td>{{ external_location.externalUser }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ external_location.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ external_location.phone }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ external_location.message }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ external_location.dateEnd ? external_location.dateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_external_location_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">edit</a>
+
+    {{ include('back/external_location/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Material index{% endblock %}
+
+{% block body %}
+    <h1>Material index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>SerialNumber</th>
+                <th>Password</th>
+                <th>PurchaseDate</th>
+                <th>Affectation</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for material in materials %}
+            <tr>
+                <td>{{ material.id }}</td>
+                <td>{{ material.model }}</td>
+                <td>{{ material.serialNumber }}</td>
+                <td>{{ material.password }}</td>
+                <td>{{ material.purchaseDate ? material.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ material.affectation }}</td>
+                <td>{{ material.status }}</td>
+                <td>
+                    <a href="{{ path('app_back_material_show', {'id': material.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_edit', {'id': material.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_new') }}">Create new</a>
+{% endblock %}

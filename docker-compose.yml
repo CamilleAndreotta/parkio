@@ -1,0 +1,48 @@
+version : '3'
+
+networks:
+  parkio:
+    driver: bridge
+
+services: 
+
+  web:
+    container_name: web_parkio
+    user: '1000:1000'
+    build: 
+      context: .
+      dockerfile: apachephp.dockerfile
+    ports:
+      - 980:80
+    volumes:
+      - .:/var/www/html/
+    networks:
+      - parkio
+  
+  db:
+    container_name: db_parkio
+    image: mysql:latest
+    restart: unless-stopped
+    ports:
+      - 9306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - parkio
+
+  adminer:
+    container_name: adminer_parkio
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    networks:
+      - parkio
+  
+
+    
+
