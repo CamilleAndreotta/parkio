@@ -33,6 +33,15 @@ class ExternalLocationType extends AbstractType
                 'constraints' => new NotBlank(),
                 'label' => 'Numéro de téléphone de l\'emprunteur ',
             ])
+            ->add('user', EntityType::class, [
+                'label' => 'Référent de la demande',
+                'choice_label' => 'internalUser',
+                'class' => User::class, 
+                'multiple' => false, 
+                'expanded' => false, 
+                'required' => true, 
+                'mapped' => true,
+            ])
             ->add('message', TextareaType::class, [
                 'constraints' => new NotBlank(),
                 'label' => 'Indiquez le matériel souhaité', 
@@ -57,23 +66,31 @@ class ExternalLocationType extends AbstractType
                     return $er->createQueryBuilder('m')
                     ->WHERE('m.category= :ordinateurPortable')
                     ->ANDWHERE('m.status=:available')
-                    ->ANDWHERE('m.affectation = :interne' )
+                    ->ANDWHERE('m.affectation = :externe' )
                     ->setParameter('ordinateurPortable', 'ordinateurPortable' )
                     ->setParameter('available', 'available' )
-                    ->setParameter('interne', 'interne' );
+                    ->setParameter('externe', 'externe' );
                 },
                 'multiple' => true,
                 'required' => false
             ])
-            ->add('user', EntityType::class, [
-                'label' => 'Selectionner un utilisateur',
-                'choice_label' => 'internalUser',
-                'class' => User::class, 
-                'multiple' => false, 
-                'expanded' => false, 
-                'required' => true, 
-                'mapped' => true,
+            ->add('material', EntityType::class, [
+                'class' => Material::class,
+                'label' => 'Affecter un matériel',
+                'choice_label' => 'model',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('m')
+                    ->WHERE('m.category= :souris')
+                    ->ANDWHERE('m.status=:available')
+                    ->ANDWHERE('m.affectation = :externe' )
+                    ->setParameter('souris', 'souris' )
+                    ->setParameter('available', 'available' )
+                    ->setParameter('externe', 'externe' );
+                },
+                'multiple' => true,
+                'required' => false
             ])
+            
         ;
     }
 

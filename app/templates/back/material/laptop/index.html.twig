@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laptop index{% endblock %}
+
+{% block body %}
+    <h1>Laptop index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>SerialNumber</th>
+                <th>Password</th>
+                <th>PurchaseDate</th>
+                <th>Affectation</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laptop in laptops %}
+            <tr>
+                <td>{{ laptop.id }}</td>
+                <td>{{ laptop.model }}</td>
+                <td>{{ laptop.serialNumber }}</td>
+                <td>{{ laptop.password }}</td>
+                <td>{{ laptop.purchaseDate ? laptop.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ laptop.affectation }}</td>
+                <td>{{ laptop.status }}</td>
+                <td>
+                    <a href="{{ path('app_back_material_laptop_show', {'id': laptop.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_laptop_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Videoprojector index{% endblock %}
+
+{% block body %}
+    <h1>Videoprojector index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>PurchaseDate</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for videoprojector in videoprojectors %}
+            <tr>
+                <td>{{ videoprojector.id }}</td>
+                <td>{{ videoprojector.model }}</td>
+                <td>{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ videoprojector.status }}</td>
+                <td>
+                    <a href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_videoprojector_new') }}">Create new</a>
+{% endblock %}

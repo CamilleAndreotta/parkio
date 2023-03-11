@@ -35,24 +35,48 @@ class InternalLocation
     private $information;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ExternalLocation::class, mappedBy="InternalLocation")
-     */
-    private $externalLocations;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Material::class, inversedBy="internalLocations")
-     */
-    private $material;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="internalLocations")
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Laptop::class, inversedBy="internalLocations")
+     */
+    private $laptop;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Computer::class, inversedBy="internalLocations")
+     */
+    private $computer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Monitor::class, inversedBy="internalLocations")
+     */
+    private $monitor;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Videoprojector::class, inversedBy="internalLocations")
+     */
+    private $videoprojector;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Mouse::class, inversedBy="internalLocations")
+     */
+    private $mouse;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Keyboard::class, inversedBy="internalLocations")
+     */
+    private $keyboard;
+
     public function __construct()
     {
-        $this->externalLocations = new ArrayCollection();
-        $this->material = new ArrayCollection();
+        $this->laptop = new ArrayCollection();
+        $this->computer = new ArrayCollection();
+        $this->monitor = new ArrayCollection();
+        $this->videoprojector = new ArrayCollection();
+        $this->mouse = new ArrayCollection();
+        $this->keyboard = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,57 +120,6 @@ class InternalLocation
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExternalLocation>
-     */
-    public function getExternalLocations(): Collection
-    {
-        return $this->externalLocations;
-    }
-
-    public function addExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if (!$this->externalLocations->contains($externalLocation)) {
-            $this->externalLocations[] = $externalLocation;
-            $externalLocation->addInternalLocation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if ($this->externalLocations->removeElement($externalLocation)) {
-            $externalLocation->removeInternalLocation($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Material>
-     */
-    public function getMaterial(): Collection
-    {
-        return $this->material;
-    }
-
-    public function addMaterial(Material $material): self
-    {
-        if (!$this->material->contains($material)) {
-            $this->material[] = $material;
-        }
-
-        return $this;
-    }
-
-    public function removeMaterial(Material $material): self
-    {
-        $this->material->removeElement($material);
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -155,6 +128,150 @@ class InternalLocation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Laptop>
+     */
+    public function getLaptop(): Collection
+    {
+        return $this->laptop;
+    }
+
+    public function addLaptop(Laptop $laptop): self
+    {
+        if (!$this->laptop->contains($laptop)) {
+            $this->laptop[] = $laptop;
+        }
+
+        return $this;
+    }
+
+    public function removeLaptop(Laptop $laptop): self
+    {
+        $this->laptop->removeElement($laptop);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Computer>
+     */
+    public function getComputer(): Collection
+    {
+        return $this->computer;
+    }
+
+    public function addComputer(Computer $computer): self
+    {
+        if (!$this->computer->contains($computer)) {
+            $this->computer[] = $computer;
+        }
+
+        return $this;
+    }
+
+    public function removeComputer(Computer $computer): self
+    {
+        $this->computer->removeElement($computer);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Monitor>
+     */
+    public function getMonitor(): Collection
+    {
+        return $this->monitor;
+    }
+
+    public function addMonitor(Monitor $monitor): self
+    {
+        if (!$this->monitor->contains($monitor)) {
+            $this->monitor[] = $monitor;
+        }
+
+        return $this;
+    }
+
+    public function removeMonitor(Monitor $monitor): self
+    {
+        $this->monitor->removeElement($monitor);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Videoprojector>
+     */
+    public function getVideoprojector(): Collection
+    {
+        return $this->videoprojector;
+    }
+
+    public function addVideoprojector(Videoprojector $videoprojector): self
+    {
+        if (!$this->videoprojector->contains($videoprojector)) {
+            $this->videoprojector[] = $videoprojector;
+        }
+
+        return $this;
+    }
+
+    public function removeVideoprojector(Videoprojector $videoprojector): self
+    {
+        $this->videoprojector->removeElement($videoprojector);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Mouse>
+     */
+    public function getMouse(): Collection
+    {
+        return $this->mouse;
+    }
+
+    public function addMouse(Mouse $mouse): self
+    {
+        if (!$this->mouse->contains($mouse)) {
+            $this->mouse[] = $mouse;
+        }
+
+        return $this;
+    }
+
+    public function removeMouse(Mouse $mouse): self
+    {
+        $this->mouse->removeElement($mouse);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Keyboard>
+     */
+    public function getKeyboard(): Collection
+    {
+        return $this->keyboard;
+    }
+
+    public function addKeyboard(Keyboard $keyboard): self
+    {
+        if (!$this->keyboard->contains($keyboard)) {
+            $this->keyboard[] = $keyboard;
+        }
+
+        return $this;
+    }
+
+    public function removeKeyboard(Keyboard $keyboard): self
+    {
+        $this->keyboard->removeElement($keyboard);
 
         return $this;
     }

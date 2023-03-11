@@ -2,27 +2,30 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Computer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class ComputerType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('roles')
+            ->add('model')
+            ->add('serialNumber')
             ->add('password')
-            ->add('internalUser')
+            ->add('purchaseDate')
+            ->add('affectation')
+            ->add('status')
+            ->add('internalLocations')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Computer::class,
         ]);
     }
 }

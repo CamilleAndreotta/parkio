@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Videoprojector{% endblock %}
+
+{% block body %}
+    <h1>Edit Videoprojector</h1>
+
+    {{ include('back/material/videoprojector/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_back_material_videoprojector_index') }}">back to list</a>
+
+    {{ include('back/material/videoprojector/_delete_form.html.twig') }}
+{% endblock %}

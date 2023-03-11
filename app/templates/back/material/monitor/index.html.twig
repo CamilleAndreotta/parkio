@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Monitor index{% endblock %}
+
+{% block body %}
+    <h1>Monitor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>PurchaseDate</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for monitor in monitors %}
+            <tr>
+                <td>{{ monitor.id }}</td>
+                <td>{{ monitor.model }}</td>
+                <td>{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ monitor.status }}</td>
+                <td>
+                    <a href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_monitor_new') }}">Create new</a>
+{% endblock %}

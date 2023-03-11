@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laptop{% endblock %}
+
+{% block body %}
+    <h1>Laptop</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ laptop.id }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ laptop.model }}</td>
+            </tr>
+            <tr>
+                <th>SerialNumber</th>
+                <td>{{ laptop.serialNumber }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ laptop.password }}</td>
+            </tr>
+            <tr>
+                <th>PurchaseDate</th>
+                <td>{{ laptop.purchaseDate ? laptop.purchaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Affectation</th>
+                <td>{{ laptop.affectation }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ laptop.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_laptop_index') }}">back to list</a>
+
+    <a href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+
+    {{ include('back/material/laptop/_delete_form.html.twig') }}
+{% endblock %}

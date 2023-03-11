@@ -2,35 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\InternalLocation;
+use App\Entity\Laptop;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InternalLocationType extends AbstractType
+class LaptopType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateStart')
-            ->add('dateEnd')
-            ->add('information')
+            ->add('model')
+            ->add('serialNumber')
+            ->add('password')
+            ->add('purchaseDate')
+            ->add('affectation')
+            ->add('status')
             ->add('externalLocations')
-            ->add('material')
-            ->add('user')
-            ->add('laptop')
-            ->add('computer')
-            ->add('monitor')
-            ->add('videoprojector')
-            ->add('mouse')
-            ->add('keyboard')
+            ->add('internalLocations')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => InternalLocation::class,
+            'data_class' => Laptop::class,
         ]);
     }
 }

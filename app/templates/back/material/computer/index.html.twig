@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Computer index{% endblock %}
+
+{% block body %}
+    <h1>Computer index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Model</th>
+                <th>SerialNumber</th>
+                <th>Password</th>
+                <th>PurchaseDate</th>
+                <th>Affectation</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for computer in computers %}
+            <tr>
+                <td>{{ computer.id }}</td>
+                <td>{{ computer.model }}</td>
+                <td>{{ computer.serialNumber }}</td>
+                <td>{{ computer.password }}</td>
+                <td>{{ computer.purchaseDate ? computer.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ computer.affectation }}</td>
+                <td>{{ computer.status }}</td>
+                <td>
+                    <a href="{{ path('app_back_material_computer_show', {'id': computer.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_computer_edit', {'id': computer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_material_computer_new') }}">Create new</a>
+{% endblock %}

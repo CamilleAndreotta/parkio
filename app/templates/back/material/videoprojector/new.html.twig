@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Videoprojector{% endblock %}
+
+{% block body %}
+    <h1>Create new Videoprojector</h1>
+
+    {{ include('back/material/videoprojector/_form.html.twig') }}
+
+    <a href="{{ path('app_back_material_videoprojector_index') }}">back to list</a>
+{% endblock %}
