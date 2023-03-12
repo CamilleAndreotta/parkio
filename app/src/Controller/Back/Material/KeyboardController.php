@@ -11,22 +11,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/back/material/keyboad")
+ * @Route("/back/material/keyboard")
  */
-class KeyboadController extends AbstractController
+class KeyboardController extends AbstractController
 {
     /**
-     * @Route("/", name="app_back_material_keyboad_index", methods={"GET"})
+     * @Route("/", name="app_back_material_keyboard_index", methods={"GET"})
      */
     public function index(KeyboardRepository $keyboardRepository): Response
     {
-        return $this->render('back/material/keyboad/index.html.twig', [
+        return $this->render('back/material/keyboard/index.html.twig', [
             'keyboards' => $keyboardRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="app_back_material_keyboad_new", methods={"GET", "POST"})
+     * @Route("/new", name="app_back_material_keyboard_new", methods={"GET", "POST"})
      */
     public function new(Request $request, KeyboardRepository $keyboardRepository): Response
     {
@@ -37,27 +37,27 @@ class KeyboadController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $keyboardRepository->add($keyboard, true);
 
-            return $this->redirectToRoute('app_back_material_keyboad_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_back_material_keyboard_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('back/material/keyboad/new.html.twig', [
+        return $this->renderForm('back/material/keyboard/new.html.twig', [
             'keyboard' => $keyboard,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_back_material_keyboad_show", methods={"GET"})
+     * @Route("/{id}", name="app_back_material_keyboard_show", methods={"GET"})
      */
     public function show(Keyboard $keyboard): Response
     {
-        return $this->render('back/material/keyboad/show.html.twig', [
+        return $this->render('back/material/keyboard/show.html.twig', [
             'keyboard' => $keyboard,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="app_back_material_keyboad_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="app_back_material_keyboard_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository): Response
     {
@@ -67,17 +67,17 @@ class KeyboadController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $keyboardRepository->add($keyboard, true);
 
-            return $this->redirectToRoute('app_back_material_keyboad_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_back_material_keyboard_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('back/material/keyboad/edit.html.twig', [
+        return $this->renderForm('back/material/keyboard/edit.html.twig', [
             'keyboard' => $keyboard,
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="app_back_material_keyboad_delete", methods={"POST"})
+     * @Route("/{id}", name="app_back_material_keyboard_delete", methods={"POST"})
      */
     public function delete(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository): Response
     {
@@ -85,6 +85,6 @@ class KeyboadController extends AbstractController
             $keyboardRepository->remove($keyboard, true);
         }
 
-        return $this->redirectToRoute('app_back_material_keyboad_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_back_material_keyboard_index', [], Response::HTTP_SEE_OTHER);
     }
 }

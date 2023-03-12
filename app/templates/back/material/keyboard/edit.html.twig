@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Keyboard{% endblock %}
+
+{% block body %}
+    <h1>Edit Keyboard</h1>
+
+    {{ include('back/material/keyboard/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_back_material_keyboard_index') }}">back to list</a>
+
+    {{ include('back/material/keyboard/_delete_form.html.twig') }}
+{% endblock %}

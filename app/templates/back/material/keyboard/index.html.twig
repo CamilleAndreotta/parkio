@@ -23,8 +23,8 @@
                 <td>{{ keyboard.affectation }}</td>
                 <td>{{ keyboard.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_keyboad_show', {'id': keyboard.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_keyboad_edit', {'id': keyboard.id}) }}">edit</a>
+                    <a href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">show</a>
+                    <a href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_keyboad_new') }}">Create new</a>
+    <a href="{{ path('app_back_material_keyboard_new') }}">Create new</a>
 {% endblock %}

@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\ExternalLocation;
-use App\Entity\Material;
+use App\Entity\Keyboard;
+use App\Entity\Laptop;
+use App\Entity\Mouse;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -58,38 +60,49 @@ class ExternalLocationType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date de fin de location',
             ])
-            ->add('material', EntityType::class, [
-                'class' => Material::class,
-                'label' => 'Affecter un matériel',
+            ->add('laptop', EntityType::class, [
+                'class' => Laptop::class,
+                'label' => 'Affecter un ordinateur portable',
+                'choice_label' => 'model',
+                'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('l')
+                    ->WHERE('l.status=:available')
+                    ->ANDWHERE('l.affectation = :externe' )
+                    ->setParameter('available', 'available' )
+                    ->setParameter('externe', 'externe' );
+                },
+                'multiple' => true,
+                'required' => false,
+            ])
+            ->add('mouse', EntityType::class, [
+                'class' => Mouse::class,
+                'label' => 'Affecter une souris',
                 'choice_label' => 'model',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('m')
-                    ->WHERE('m.category= :ordinateurPortable')
-                    ->ANDWHERE('m.status=:available')
+                    ->WHERE('m.status=:available')
                     ->ANDWHERE('m.affectation = :externe' )
-                    ->setParameter('ordinateurPortable', 'ordinateurPortable' )
                     ->setParameter('available', 'available' )
                     ->setParameter('externe', 'externe' );
                 },
                 'multiple' => true,
                 'required' => false
             ])
-            ->add('material', EntityType::class, [
-                'class' => Material::class,
-                'label' => 'Affecter un matériel',
+            ->add('keyboard', EntityType::class, [
+                'class' => Keyboard::class,
+                'label' => 'Affecter un clavier',
                 'choice_label' => 'model',
                 'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                    ->WHERE('m.category= :souris')
-                    ->ANDWHERE('m.status=:available')
-                    ->ANDWHERE('m.affectation = :externe' )
-                    ->setParameter('souris', 'souris' )
+                    return $er->createQueryBuilder('k')
+                    ->WHERE('k.status=:available')
+                    ->ANDWHERE('k.affectation = :externe' )
                     ->setParameter('available', 'available' )
                     ->setParameter('externe', 'externe' );
                 },
                 'multiple' => true,
                 'required' => false
             ])
+            
             
         ;
     }
