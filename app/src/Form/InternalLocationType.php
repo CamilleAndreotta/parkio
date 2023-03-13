@@ -40,10 +40,10 @@ class InternalLocationType extends AbstractType
                 'label' => 'Date de début de location',
             ])
             ->add('dateEnd', DateType::class, [
-                'constraints' => new NotBlank(),
                 'input' => 'datetime',
                 'widget' => 'single_text',
                 'label' => 'Date de fin de location',
+                'required' => 'false',
             ])
             ->add('information',TextareaType::class, [
                 'constraints' => new NotBlank(),
@@ -70,12 +70,10 @@ class InternalLocationType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                     ->WHERE('c.status=:available')
-                    ->ANDWHERE('c.affectation = :interne' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('interne', 'interne' );
+                    ->setParameter('available', 'available' );
                 },
                 'multiple' => true,
-                'required' => false
+                'required' => false,
             ])
             ->add('monitor', EntityType::class, [
                 'class' => Monitor::class,
@@ -87,7 +85,7 @@ class InternalLocationType extends AbstractType
                     ->setParameter('available', 'available' );
                 },
                 'multiple' => true,
-                'required' => false
+                'required' => false,
             ])
             ->add('videoprojector', EntityType::class, [
                 'class' => Videoprojector::class,
@@ -99,7 +97,7 @@ class InternalLocationType extends AbstractType
                     ->setParameter('available', 'available' );
                 },
                 'multiple' => true,
-                'required' => false
+                'required' => false,
             ])
             ->add('mouse', EntityType::class, [
                 'class' => Mouse::class,
@@ -127,7 +125,7 @@ class InternalLocationType extends AbstractType
                     ->setParameter('interne', 'interne' );
                 },
                 'multiple' => true,
-                'required' => false
+                'required' => false,
             ])
         ;
     }

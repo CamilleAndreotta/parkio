@@ -13,7 +13,6 @@
                 <th>SerialNumber</th>
                 <th>Password</th>
                 <th>PurchaseDate</th>
-                <th>Affectation</th>
                 <th>Status</th>
                 <th>actions</th>
             </tr>
@@ -26,7 +25,6 @@
                 <td>{{ computer.serialNumber }}</td>
                 <td>{{ computer.password }}</td>
                 <td>{{ computer.purchaseDate ? computer.purchaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ computer.affectation }}</td>
                 <td>{{ computer.status }}</td>
                 <td>
                     <a href="{{ path('app_back_material_computer_show', {'id': computer.id}) }}">show</a>

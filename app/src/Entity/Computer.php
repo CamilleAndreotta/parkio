@@ -42,11 +42,6 @@ class Computer
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $affectation;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $status;
 
     /**
@@ -108,18 +103,6 @@ class Computer
     public function setPurchaseDate(\DateTimeInterface $purchaseDate): self
     {
         $this->purchaseDate = $purchaseDate;
-
-        return $this;
-    }
-
-    public function getAffectation(): ?string
-    {
-        return $this->affectation;
-    }
-
-    public function setAffectation(string $affectation): self
-    {
-        $this->affectation = $affectation;
 
         return $this;
     }

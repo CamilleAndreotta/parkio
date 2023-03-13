@@ -5,6 +5,7 @@ namespace App\Controller\Back\Material;
 use App\Entity\Computer;
 use App\Form\ComputerType;
 use App\Repository\ComputerRepository;
+use App\Repository\InternalLocationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,12 +60,33 @@ class ComputerController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_computer_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Computer $computer, ComputerRepository $computerRepository): Response
+    public function edit(Request $request, Computer $computer, ComputerRepository $computerRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $form = $this->createForm(ComputerType::class, $computer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $computerRepository->findComputerAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeComputer($computer);
+                    
+                }
+
+            }
+
+
             $computerRepository->add($computer, true);
 
             return $this->redirectToRoute('app_back_material_computer_index', [], Response::HTTP_SEE_OTHER);

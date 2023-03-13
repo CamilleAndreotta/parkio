@@ -4,17 +4,92 @@ namespace App\Controller\Back;
 
 use App\Entity\InternalLocation;
 use App\Form\InternalLocationType;
-use App\Repository\InternalLocationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use App\Repository\MouseRepository;
+use App\Repository\LaptopRepository;
+use App\Repository\MonitorRepository;
+use App\Repository\ComputerRepository;
+use App\Repository\KeyboardRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\VideoprojectorRepository;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\InternalLocationRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use App\Services\NotAvailable\UpdateLaptopStatus;
+use App\Services\NotAvailable\UpdateMouseStatus; 
+use App\Services\NotAvailable\UpdateComputerStatus;
+use App\Services\NotAvailable\UpdateKeyboardStatus; 
+use App\Services\NotAvailable\UpdateMonitorStatus;
+use App\Services\NotAvailable\UpdateVideoprojectorStatus;
+
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * @Route("/back/internal/location")
  */
 class InternalLocationController extends AbstractController
 {
+    
+    private $laptopRepository;
+    private $computerRepository; 
+    private $monitorRepository; 
+    private $videoprojectorRepository; 
+    private $mouseRepository;
+    private $keyboardRepository; 
+    private $internalLocationRepository;
+
+    private $updateLaptopStatus;
+    private $updateComputerStatus; 
+    private $updateMonitorStatus;
+    private $updateVideoprojectorStatus;
+    private $updateMouseStatus;
+    private $updateKeyboardStatus;
+
+
+    private $em; 
+
+
+    public function __construct(
+        
+        LaptopRepository $laptopRepository, 
+        ComputerRepository $computerRepository, 
+        MonitorRepository $monitorRepository, 
+        VideoprojectorRepository $videoprojectorRepository, 
+        MouseRepository $mouseRepository, 
+        KeyboardRepository $keyboardRepository, 
+        InternalLocationRepository $internalLocationRepository,
+
+        UpdateLaptopStatus $updateLaptopStatus, 
+        UpdateComputerStatus $updateComputerStatus, 
+        UpdateMonitorStatus $updateMonitorStatus, 
+        UpdateVideoprojectorStatus $updateVideoprojectorStatus, 
+        UpdateMouseStatus $updateMouseStatus, 
+        UpdateKeyboardStatus $updateKeyboardStatus, 
+        
+        EntityManagerInterface $em ){
+
+        $this->laptopRepository =  $laptopRepository; 
+        $this->computerRepository = $computerRepository;
+        $this->monitorRepository = $monitorRepository; 
+        $this->mouseRepository = $mouseRepository; 
+        $this->videoprojectorRepository = $videoprojectorRepository; 
+        $this->keyboardRepository = $keyboardRepository;
+        $this->internalLocationRepository = $internalLocationRepository;
+
+        $this->updateLaptopStatus = $updateLaptopStatus;
+        $this->updateComputerStatus = $updateComputerStatus;
+        $this->updateMonitorStatus = $updateMonitorStatus;
+        $this->updateVideoprojectorStatus = $updateVideoprojectorStatus;
+        $this->updateMouseStatus = $updateMouseStatus;
+        $this->updateKeyboardStatus = $updateKeyboardStatus;
+
+        $this->em = $em; 
+
+    }
+    
     /**
      * @Route("/", name="app_back_internal_location_index", methods={"GET"})
      */
@@ -35,6 +110,22 @@ class InternalLocationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** Manage status of all materials in submission of form with services */
+            
+            $this->updateComputerStatus->updateStatus($form, $this->computerRepository, $this->em);
+
+            $this->updateLaptopStatus->updateStatus($form, $this->laptopRepository, $this->em);
+   
+            $this->updateMonitorStatus->updateStatus($form, $this->monitorRepository, $this->em);
+        
+            $this->updateVideoprojectorStatus->updateStatus($form, $this->videoprojectorRepository, $this->em);
+        
+            $this->updateMouseStatus->updateStatus($form, $this->mouseRepository, $this->em);
+        
+            $this->updateKeyboardStatus->updateStatus($form, $this->keyboardRepository, $this->em);
+
+        
             $internalLocationRepository->add($internalLocation, true);
 
             return $this->redirectToRoute('app_back_internal_location_index', [], Response::HTTP_SEE_OTHER);
@@ -64,7 +155,22 @@ class InternalLocationController extends AbstractController
         $form = $this->createForm(InternalLocationType::class, $internalLocation);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+
+             /** Manage status of all materials in submission of form with services */
+          
+             $this->updateComputerStatus->updateStatus($form, $this->computerRepository, $this->em);
+
+             $this->updateLaptopStatus->updateStatus($form, $this->laptopRepository, $this->em);
+         
+             $this->updateMonitorStatus->updateStatus($form, $this->monitorRepository, $this->em);
+         
+             $this->updateVideoprojectorStatus->updateStatus($form, $this->videoprojectorRepository, $this->em);
+         
+             $this->updateMouseStatus->updateStatus($form, $this->mouseRepository, $this->em);
+         
+             $this->updateKeyboardStatus->updateStatus($form, $this->keyboardRepository, $this->em);
+            
             $internalLocationRepository->add($internalLocation, true);
 
             return $this->redirectToRoute('app_back_internal_location_index', [], Response::HTTP_SEE_OTHER);

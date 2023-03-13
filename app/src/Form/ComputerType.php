@@ -34,16 +34,6 @@ class ComputerType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date d\'achat',
             ])
-            ->add('affectation', ChoiceType::class, [
-                'label' => 'Usage du matériel',
-                'choices' => [
-                    'Interne' => 'interne',
-                    'Externe' => 'externe',
-                ],
-                'multiple' => false, 
-                'expanded' => true, 
-                'required' => true
-            ])
             ->add('status', ChoiceType::class, [
                 'label' => 'Disponibilité du matériel',
                 'choices' => [

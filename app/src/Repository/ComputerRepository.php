@@ -63,4 +63,30 @@ class ComputerRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+      
+      /**
+       * Find Internal Relation for laptop to delete him of the relation.
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findComputerAndInternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from computer 
+        Inner Join internal_location_computer on computer.id = internal_location_computer.computer_id
+        Where computer.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
+
+
+
+
 }
