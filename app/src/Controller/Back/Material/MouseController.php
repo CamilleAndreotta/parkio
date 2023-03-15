@@ -4,6 +4,7 @@ namespace App\Controller\Back\Material;
 
 use App\Entity\Mouse;
 use App\Form\MouseType;
+use App\Repository\InternalLocationRepository;
 use App\Repository\MouseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,13 +29,33 @@ class MouseController extends AbstractController
     /**
      * @Route("/new", name="app_back_material_mouse_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, MouseRepository $mouseRepository): Response
+    public function new(Request $request, MouseRepository $mouseRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $mouse = new Mouse();
         $form = $this->createForm(MouseType::class, $mouse);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $mouseRepository->findMouseAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeMouse($mouse);
+                    
+                }
+
+            }
+
             $mouseRepository->add($mouse, true);
 
             return $this->redirectToRoute('app_back_material_mouse_index', [], Response::HTTP_SEE_OTHER);

@@ -4,6 +4,7 @@ namespace App\Controller\Back\Material;
 
 use App\Entity\Monitor;
 use App\Form\MonitorType;
+use App\Repository\InternalLocationRepository;
 use App\Repository\MonitorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,12 +60,32 @@ class MonitorController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_monitor_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Monitor $monitor, MonitorRepository $monitorRepository): Response
+    public function edit(Request $request, Monitor $monitor, MonitorRepository $monitorRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $form = $this->createForm(MonitorType::class, $monitor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $monitorRepository->findMonitorAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeMonitor($monitor);
+                    
+                }
+
+            }
+
             $monitorRepository->add($monitor, true);
 
             return $this->redirectToRoute('app_back_material_monitor_index', [], Response::HTTP_SEE_OTHER);

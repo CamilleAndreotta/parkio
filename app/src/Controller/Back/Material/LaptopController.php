@@ -3,7 +3,9 @@
 namespace App\Controller\Back\Material;
 
 use App\Entity\Laptop;
+use App\Form\InternalLocationType;
 use App\Form\LaptopType;
+use App\Repository\InternalLocationRepository;
 use App\Repository\LaptopRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,12 +61,33 @@ class LaptopController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_laptop_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository): Response
+    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $form = $this->createForm(LaptopType::class, $laptop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+    
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $laptopRepository->findLaptopAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeLaptop($laptop);
+
+                }
+
+            }
+
+
             $laptopRepository->add($laptop, true);
 
             return $this->redirectToRoute('app_back_material_laptop_index', [], Response::HTTP_SEE_OTHER);

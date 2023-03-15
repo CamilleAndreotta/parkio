@@ -63,4 +63,25 @@ class KeyboardRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+/**
+       * Find Internal Relation for keyboard
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findKeyboardAndInternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from keyboard
+        Inner Join internal_location_keyboard on keyboard.id = internal_location_keyboard.keyboard_id
+        Where keyboard.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
 }

@@ -63,4 +63,26 @@ class VideoprojectorRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+       /**
+       * Find Internal Relation for videoprojector
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findVideoprojectorAndInternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from videoprojector
+        Inner Join internal_location_videoprojector on videoprojector.id = internal_location_videoprojector.videoprojector_id
+        Where videoprojector.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
 }

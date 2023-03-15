@@ -4,6 +4,7 @@ namespace App\Controller\Back\Material;
 
 use App\Entity\Videoprojector;
 use App\Form\VideoprojectorType;
+use App\Repository\InternalLocationRepository;
 use App\Repository\VideoprojectorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,12 +60,32 @@ class VideoprojectorController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_videoprojector_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Videoprojector $videoprojector, VideoprojectorRepository $videoprojectorRepository): Response
+    public function edit(Request $request, Videoprojector $videoprojector, VideoprojectorRepository $videoprojectorRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $form = $this->createForm(VideoprojectorType::class, $videoprojector);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $videoprojectorRepository->findVideoprojectorAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeVideoprojector($videoprojector);
+                    
+                }
+
+            }
+
             $videoprojectorRepository->add($videoprojector, true);
 
             return $this->redirectToRoute('app_back_material_videoprojector_index', [], Response::HTTP_SEE_OTHER);

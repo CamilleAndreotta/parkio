@@ -65,7 +65,7 @@ class ComputerRepository extends ServiceEntityRepository
 //    }
       
       /**
-       * Find Internal Relation for laptop to delete him of the relation.
+       * Find Internal Relation for computer
        *
        * @param [type] $id
        * @return array

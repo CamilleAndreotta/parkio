@@ -63,4 +63,26 @@ class LaptopRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+/**
+       * Find Internal Relation for laptop
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findLaptopAndInternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from laptop
+        Inner Join internal_location_laptop on laptop.id = internal_location_laptop.laptop_id
+        Where laptop.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
 }

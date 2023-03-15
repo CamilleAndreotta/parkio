@@ -4,6 +4,7 @@ namespace App\Controller\Back\Material;
 
 use App\Entity\Keyboard;
 use App\Form\KeyboardType;
+use App\Repository\InternalLocationRepository;
 use App\Repository\KeyboardRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,12 +60,33 @@ class KeyboardController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_keyboard_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository): Response
+    public function edit(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository, InternalLocationRepository $internalLocationRepository): Response
     {
         $form = $this->createForm(KeyboardType::class, $keyboard);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+            $id = $form->getData()->getId();
+
+            if($status === "available"){
+
+                $datas = $keyboardRepository->findKeyboardAndInternalLocation($id);
+
+                foreach($datas as $data){
+
+                    $id = $data['internal_location_id'];
+
+                    $newInternalLocation = $internalLocationRepository->find($id);
+
+                    $newInternalLocation->removeKeyboard($keyboard);
+                    
+                }
+
+            }
+
+
             $keyboardRepository->add($keyboard, true);
 
             return $this->redirectToRoute('app_back_material_keyboard_index', [], Response::HTTP_SEE_OTHER);

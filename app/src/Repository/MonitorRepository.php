@@ -63,4 +63,26 @@ class MonitorRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+/**
+       * Find Internal Relation for Monitor
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findMonitorAndInternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from monitor
+        Inner Join internal_location_monitor on monitor.id = internal_location_monitor.monitor_id
+        Where monitor.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
 }
