@@ -70,12 +70,34 @@ class MouseRepository extends ServiceEntityRepository
        * @param [type] $id
        * @return array
        */
-      public function findMouseAndInternalLocation($id){
+        public function findMouseAndInternalLocation($id){
         
         $sql = 
         "
         Select * from mouse 
         Inner Join internal_location on mouse.id = internal_location.mouse_id
+        Where mouse.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+      }
+
+      /**
+       * Find External Relation for Mouse
+       *
+       * @param [type] $id
+       * @return array
+       */
+      public function findMouseAndExternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from mouse 
+        Inner Join external_location on mouse.id = external_location.mouse_id
         Where mouse.id = $id;
         ";
 

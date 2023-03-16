@@ -64,13 +64,13 @@ class LaptopRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-/**
+       /**
        * Find Internal Relation for laptop
        *
        * @param [type] $id
        * @return array
        */
-      public function findLaptopAndInternalLocation($id){
+        public function findLaptopAndInternalLocation($id){
         
         $sql = 
         "
@@ -84,5 +84,29 @@ class LaptopRepository extends ServiceEntityRepository
         $result = $statement->executeQuery();
         return $result->fetchAllAssociative();
 
-      }
+        }
+
+
+       /**
+       * Find External Relation for laptop
+       *
+       * @param [type] $id
+       * @return array
+       */
+        public function findLaptopAndExternalLocation($id){
+        
+        $sql = 
+        "
+        Select * from laptop
+        Inner Join external_location on laptop.id = external_location.laptop_id
+        Where laptop.id = $id;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection(); 
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        return $result->fetchAllAssociative();
+
+        }
+
 }

@@ -39,6 +39,40 @@ class ExternalLocationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLaptopWithExternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT laptop.id, laptop.model, laptop.status FROM external_location 
+        INNER JOIN laptop ON external_location.laptop_id = laptop.id 
+        WHERE external_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findMouseWithExternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT mouse.id, mouse.model, mouse.status FROM external_location 
+        INNER JOIN mouse ON external_location.mouse_id = mouse.id 
+        WHERE external_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
 //    /**
 //     * @return ExternalLocation[] Returns an array of ExternalLocation objects
 //     */

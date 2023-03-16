@@ -90,9 +90,9 @@ class InternalLocationController extends AbstractController
         KeepMouseStatus $keepMouseStatus,
         KeepVideoprojectorStatus $keepVideoprojectorStatus,
 
+        EntityManagerInterface $em 
         
-
-        EntityManagerInterface $em ){
+        ){
 
         $this->laptopRepository =  $laptopRepository; 
         $this->computerRepository = $computerRepository;

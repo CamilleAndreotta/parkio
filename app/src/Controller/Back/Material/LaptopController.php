@@ -5,6 +5,7 @@ namespace App\Controller\Back\Material;
 use App\Entity\Laptop;
 use App\Form\InternalLocationType;
 use App\Form\LaptopType;
+use App\Repository\ExternalLocationRepository;
 use App\Repository\InternalLocationRepository;
 use App\Repository\LaptopRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,7 +63,7 @@ class LaptopController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_laptop_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
+    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository, InternalLocationRepository $internalLocationRepository, ExternalLocationRepository $externalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(LaptopType::class, $laptop);
         $form->handleRequest($request);
@@ -71,9 +72,12 @@ class LaptopController extends AbstractController
 
             $status =$form->getData()->getStatus();
 
+            $affectation = $form->getData()->getAffectation();
+
                 $id = $form->getData()->getId();
 
-                if ($status === "Available") {
+                if ($status === "Available" && $affectation === 'Interne') {
+
                     $datas = $laptopRepository->findLaptopAndInternalLocation($id);
 
                     foreach ($datas as $data) {
@@ -94,6 +98,32 @@ class LaptopController extends AbstractController
                         $newInternalLocation->setLaptop(null);
 
                         $em->flush($newInternalLocation);
+                    }
+
+                }
+
+                if ($status === "Available" && $affectation === 'Externe') {
+                    
+                    $datas = $laptopRepository->findLaptopAndExternalLocation($id);
+
+                    foreach ($datas as $data) {
+                        
+                        $idLocation = $data['id'];
+
+                        $idMaterial = $data['laptop_id'];
+
+                        $statusToUpdate = $laptopRepository->find($idMaterial);
+
+                        $statusToUpdate->setStatus('Available');
+
+                        $em->flush($statusToUpdate);
+
+
+                        $newExternalLocation = $externalLocationRepository->find($idLocation);
+
+                        $newExternalLocation->setLaptop(null);
+
+                        $em->flush($newExternalLocation);
                     }
 
                 }

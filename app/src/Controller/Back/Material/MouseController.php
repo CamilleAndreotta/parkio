@@ -4,6 +4,7 @@ namespace App\Controller\Back\Material;
 
 use App\Entity\Mouse;
 use App\Form\MouseType;
+use App\Repository\ExternalLocationRepository;
 use App\Repository\InternalLocationRepository;
 use App\Repository\MouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -62,7 +63,7 @@ class MouseController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_mouse_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Mouse $mouse, MouseRepository $mouseRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
+    public function edit(Request $request, Mouse $mouse, MouseRepository $mouseRepository, InternalLocationRepository $internalLocationRepository, ExternalLocationRepository $externalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(MouseType::class, $mouse);
         $form->handleRequest($request);
@@ -71,9 +72,11 @@ class MouseController extends AbstractController
 
             $status =$form->getData()->getStatus();
 
+            $affectation = $form->getData()->getAffectation();
+
             $id = $form->getData()->getId();
 
-            if ($status === "Available") {
+            if ($status === "Available"&& $affectation === 'Interne' ) {
 
                 $datas = $mouseRepository->findMouseAndInternalLocation($id);
 
@@ -94,6 +97,33 @@ class MouseController extends AbstractController
                     $newInternalLocation->setMouse(null);
 
                     $em->flush($newInternalLocation);
+
+                }
+                    
+            }
+
+            if ($status === "Available"&& $affectation === 'Externe' ) {
+
+                $datas = $mouseRepository->findMouseAndExternalLocation($id);
+
+                foreach ($datas as $data) {
+
+                    $idLocation = $data['id'];
+
+                    $idMaterial = $data['mouse_id'];
+
+                    $statusToUpdate = $mouseRepository->find($idMaterial);
+
+                    $statusToUpdate->setStatus('Available');
+
+                    $em->flush($statusToUpdate);
+
+
+                    $newExternalLocation = $externalLocationRepository->find($idLocation);
+
+                    $newExternalLocation->setMouse(null);
+
+                    $em->flush($newExternalLocation);
 
                 }
                     

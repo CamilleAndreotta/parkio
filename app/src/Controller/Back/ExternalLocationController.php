@@ -10,11 +10,71 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Doctrine\ORM\EntityManagerInterface;
+
+use App\Repository\LaptopRepository;
+use App\Repository\MouseRepository;
+
+use App\Services\ChangeMaterialStatus\LaptopStatusExternal;
+use App\Services\ChangeMaterialStatus\MouseStatusExternal;
+
+use App\Services\KeepMaterialInLocation\KeepLaptopStatusExternal;
+use App\Services\KeepMaterialInLocation\KeepMouseStatusExternal;
+
+
 /**
  * @Route("/back/external/location")
  */
 class ExternalLocationController extends AbstractController
 {   
+
+    private $laptopRepository;
+    private $mouseRepository;
+
+    private $laptopStatusExternal;
+    private $mouseStatusExternal;
+
+    private $keepLaptopStatusExternal;
+    private $keepMouseStatusExternal;
+
+    private $externalLocationRepository;
+
+    private $em; 
+
+    public function __construct(
+
+        LaptopRepository $laptopRepository,
+        MouseRepository $mouseRepository, 
+
+        LaptopStatusExternal $laptopStatusExternal,
+        MouseStatusExternal $mouseStatusExternal,
+
+        KeepLaptopStatusExternal $keepLaptopStatusExternal,
+        KeepMouseStatusExternal $keepMouseStatusExternal,
+
+        ExternalLocationRepository $externalLocationRepository,
+
+        EntityManagerInterface $em 
+
+    ){
+
+        $this->laptopRepository =  $laptopRepository; 
+        $this->mouseRepository = $mouseRepository; 
+
+        $this->laptopStatusExternal = $laptopStatusExternal;
+        $this->mouseStatusExternal = $mouseStatusExternal; 
+
+        $this->keepLaptopStatusExternal = $keepLaptopStatusExternal;
+        $this->keepMouseStatusExternal = $keepMouseStatusExternal; 
+
+        $this->externalLocationRepository = $externalLocationRepository;
+
+        $this->em = $em; 
+
+    }
+
+
+
 
     /**
      * @Route("/", name="app_back_external_location_index", methods={"GET"})
@@ -36,6 +96,11 @@ class ExternalLocationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->laptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+
+            $this->mouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+
             $externalLocationRepository->add($externalLocation, true);
 
             return $this->redirectToRoute('app_back_external_location_index', [], Response::HTTP_SEE_OTHER);
@@ -66,6 +131,29 @@ class ExternalLocationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            if ($form->getData()->getLaptop() !== null) {
+
+                $this->laptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+
+            } else {
+
+                $this->keepLaptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+
+            }
+
+            if ($form->getData()->getMouse() !== null) {
+
+                $this->mouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+
+            } else {
+
+                $this->keepMouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+
+            }
+
+
             $externalLocationRepository->add($externalLocation, true);
 
             return $this->redirectToRoute('app_back_external_location_index', [], Response::HTTP_SEE_OTHER);
