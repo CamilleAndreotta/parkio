@@ -6,6 +6,7 @@ use App\Entity\Mouse;
 use App\Form\MouseType;
 use App\Repository\InternalLocationRepository;
 use App\Repository\MouseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,25 +38,6 @@ class MouseController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $status =$form->getData()->getStatus();
-            $id = $form->getData()->getId();
-
-            if($status === "available"){
-
-                $datas = $mouseRepository->findMouseAndInternalLocation($id);
-
-                foreach($datas as $data){
-
-                    $id = $data['internal_location_id'];
-
-                    $newInternalLocation = $internalLocationRepository->find($id);
-
-                    $newInternalLocation->removeMouse($mouse);
-                    
-                }
-
-            }
-
             $mouseRepository->add($mouse, true);
 
             return $this->redirectToRoute('app_back_material_mouse_index', [], Response::HTTP_SEE_OTHER);
@@ -80,12 +62,43 @@ class MouseController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_mouse_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Mouse $mouse, MouseRepository $mouseRepository): Response
+    public function edit(Request $request, Mouse $mouse, MouseRepository $mouseRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(MouseType::class, $mouse);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $status =$form->getData()->getStatus();
+
+            $id = $form->getData()->getId();
+
+            if ($status === "Available") {
+
+                $datas = $mouseRepository->findMouseAndInternalLocation($id);
+
+                foreach ($datas as $data) {
+                    $idLocation = $data['id'];
+
+                    $idMaterial = $data['mouse_id'];
+
+                    $statusToUpdate = $mouseRepository->find($idMaterial);
+
+                    $statusToUpdate->setStatus('Available');
+
+                    $em->flush($statusToUpdate);
+
+
+                    $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                    $newInternalLocation->setMouse(null);
+
+                    $em->flush($newInternalLocation);
+
+                }
+                    
+            }
+
             $mouseRepository->add($mouse, true);
 
             return $this->redirectToRoute('app_back_material_mouse_index', [], Response::HTTP_SEE_OTHER);

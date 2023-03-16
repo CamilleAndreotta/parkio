@@ -34,15 +34,6 @@ class Monitor
      */
     private $status;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=InternalLocation::class, mappedBy="monitor")
-     */
-    private $internalLocations;
-
-    public function __construct()
-    {
-        $this->internalLocations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -84,31 +75,6 @@ class Monitor
 
         return $this;
     }
+    
 
-    /**
-     * @return Collection<int, InternalLocation>
-     */
-    public function getInternalLocations(): Collection
-    {
-        return $this->internalLocations;
-    }
-
-    public function addInternalLocation(InternalLocation $internalLocation): self
-    {
-        if (!$this->internalLocations->contains($internalLocation)) {
-            $this->internalLocations[] = $internalLocation;
-            $internalLocation->addMonitor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInternalLocation(InternalLocation $internalLocation): self
-    {
-        if ($this->internalLocations->removeElement($internalLocation)) {
-            $internalLocation->removeMonitor($this);
-        }
-
-        return $this;
-    }
 }

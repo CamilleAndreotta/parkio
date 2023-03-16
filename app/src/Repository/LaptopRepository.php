@@ -75,7 +75,7 @@ class LaptopRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from laptop
-        Inner Join internal_location_laptop on laptop.id = internal_location_laptop.laptop_id
+        Inner Join internal_location on laptop.id = internal_location.laptop_id
         Where laptop.id = $id;
         ";
 

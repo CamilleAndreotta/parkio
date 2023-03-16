@@ -75,7 +75,7 @@ class VideoprojectorRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from videoprojector
-        Inner Join internal_location_videoprojector on videoprojector.id = internal_location_videoprojector.videoprojector_id
+        Inner Join internal_location on videoprojector.id = internal_location.videoprojector_id
         Where videoprojector.id = $id;
         ";
 

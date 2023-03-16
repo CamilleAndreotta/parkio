@@ -6,6 +6,7 @@ use App\Entity\Videoprojector;
 use App\Form\VideoprojectorType;
 use App\Repository\InternalLocationRepository;
 use App\Repository\VideoprojectorRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +61,7 @@ class VideoprojectorController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_videoprojector_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Videoprojector $videoprojector, VideoprojectorRepository $videoprojectorRepository, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, Videoprojector $videoprojector, VideoprojectorRepository $videoprojectorRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(VideoprojectorType::class, $videoprojector);
         $form->handleRequest($request);
@@ -68,22 +69,34 @@ class VideoprojectorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $status =$form->getData()->getStatus();
+
             $id = $form->getData()->getId();
 
-            if($status === "available"){
+            if ($status === "Available") {
 
                 $datas = $videoprojectorRepository->findVideoprojectorAndInternalLocation($id);
 
-                foreach($datas as $data){
+                foreach ($datas as $data) {
 
-                    $id = $data['internal_location_id'];
+                    $idLocation = $data['id'];
 
-                    $newInternalLocation = $internalLocationRepository->find($id);
+                    $idMaterial = $data['videoprojector_id'];
 
-                    $newInternalLocation->removeVideoprojector($videoprojector);
-                    
+                    $statusToUpdate = $videoprojectorRepository->find($idMaterial);
+
+                    $statusToUpdate->setStatus('Available');
+
+                    $em->flush($statusToUpdate);
+
+
+                    $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                    $newInternalLocation->setVideoprojector(null);
+
+                    $em->flush($newInternalLocation);
+
                 }
-
+                    
             }
 
             $videoprojectorRepository->add($videoprojector, true);

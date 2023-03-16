@@ -40,45 +40,36 @@ class InternalLocation
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Laptop::class, inversedBy="internalLocations")
-     */
-    private $laptop;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Computer::class, inversedBy="internalLocations")
+     * @ORM\OneToOne(targetEntity=Computer::class, cascade={"persist", "remove"})
      */
     private $computer;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Monitor::class, inversedBy="internalLocations")
+     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist", "remove"})
+     */
+    private $laptop;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Monitor::class, cascade={"persist", "remove"})
      */
     private $monitor;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Videoprojector::class, inversedBy="internalLocations")
+     * @ORM\OneToOne(targetEntity=Videoprojector::class, cascade={"persist", "remove"})
      */
     private $videoprojector;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Mouse::class, inversedBy="internalLocations")
+     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist", "remove"})
      */
     private $mouse;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Keyboard::class, inversedBy="internalLocations")
+     * @ORM\OneToOne(targetEntity=Keyboard::class, cascade={"persist", "remove"})
      */
     private $keyboard;
 
-    public function __construct()
-    {
-        $this->laptop = new ArrayCollection();
-        $this->computer = new ArrayCollection();
-        $this->monitor = new ArrayCollection();
-        $this->videoprojector = new ArrayCollection();
-        $this->mouse = new ArrayCollection();
-        $this->keyboard = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -132,159 +123,77 @@ class InternalLocation
         return $this;
     }
 
-    /**
-     * @return Collection<int, Laptop>
-     */
-    public function getLaptop(): Collection
-    {
-        return $this->laptop;
-    }
-
-    public function addLaptop(Laptop $laptop): self
-    {
-        if (!$this->laptop->contains($laptop)) {
-            $this->laptop[] = $laptop;
-        }
-
-        return $this;
-    }
-
-    public function removeLaptop(Laptop $laptop): self
-    {
-        $this->laptop->removeElement($laptop);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Computer>
-     */
-    public function getComputer(): Collection
+    public function getComputer(): ?Computer
     {
         return $this->computer;
     }
 
-    public function addComputer(Computer $computer): self
+    public function setComputer(?Computer $computer): self
     {
-        if (!$this->computer->contains($computer)) {
-            $this->computer[] = $computer;
-        }
+        $this->computer = $computer;
 
         return $this;
     }
 
-    public function removeComputer(Computer $computer): self
+    public function getLaptop(): ?Laptop
     {
-        $this->computer->removeElement($computer);
+        return $this->laptop;
+    }
+
+    public function setLaptop(?Laptop $laptop): self
+    {
+        $this->laptop = $laptop;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Monitor>
-     */
-    public function getMonitor(): Collection
+    public function getMonitor(): ?Monitor
     {
         return $this->monitor;
     }
 
-    public function addMonitor(Monitor $monitor): self
+    public function setMonitor(?Monitor $monitor): self
     {
-        if (!$this->monitor->contains($monitor)) {
-            $this->monitor[] = $monitor;
-        }
+        $this->monitor = $monitor;
 
         return $this;
     }
 
-    public function removeMonitor(Monitor $monitor): self
-    {
-        $this->monitor->removeElement($monitor);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Videoprojector>
-     */
-    public function getVideoprojector(): Collection
+    public function getVideoprojector(): ?Videoprojector
     {
         return $this->videoprojector;
     }
 
-    public function addVideoprojector(Videoprojector $videoprojector): self
+    public function setVideoprojector(?Videoprojector $videoprojector): self
     {
-        if (!$this->videoprojector->contains($videoprojector)) {
-            $this->videoprojector[] = $videoprojector;
-        }
+        $this->videoprojector = $videoprojector;
 
         return $this;
     }
 
-    public function removeVideoprojector(Videoprojector $videoprojector): self
-    {
-        $this->videoprojector->removeElement($videoprojector);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Mouse>
-     */
-    public function getMouse(): Collection
+    public function getMouse(): ?Mouse
     {
         return $this->mouse;
     }
 
-    public function addMouse(Mouse $mouse): self
+    public function setMouse(?Mouse $mouse): self
     {
-        if (!$this->mouse->contains($mouse)) {
-            $this->mouse[] = $mouse;
-        }
+        $this->mouse = $mouse;
 
         return $this;
     }
 
-    public function removeMouse(Mouse $mouse): self
-    {
-        $this->mouse->removeElement($mouse);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Keyboard>
-     */
-    public function getKeyboard(): Collection
+    public function getKeyboard(): ?Keyboard
     {
         return $this->keyboard;
     }
 
-    public function addKeyboard(Keyboard $keyboard): self
+    public function setKeyboard(?Keyboard $keyboard): self
     {
-        if (!$this->keyboard->contains($keyboard)) {
-            $this->keyboard[] = $keyboard;
-        }
+        $this->keyboard = $keyboard;
 
         return $this;
     }
 
-    public function removeKeyboard(Keyboard $keyboard): self
-    {
-        $this->keyboard->removeElement($keyboard);
-
-        return $this;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
+    
 }

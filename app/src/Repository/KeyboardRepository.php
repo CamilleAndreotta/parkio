@@ -74,7 +74,7 @@ class KeyboardRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from keyboard
-        Inner Join internal_location_keyboard on keyboard.id = internal_location_keyboard.keyboard_id
+        Inner Join internal_location on keyboard.id = internal_location.keyboard_id
         Where keyboard.id = $id;
         ";
 

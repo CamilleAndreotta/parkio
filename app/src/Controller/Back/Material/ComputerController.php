@@ -6,6 +6,7 @@ use App\Entity\Computer;
 use App\Form\ComputerType;
 use App\Repository\ComputerRepository;
 use App\Repository\InternalLocationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,27 +61,40 @@ class ComputerController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_computer_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Computer $computer, ComputerRepository $computerRepository, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, Computer $computer, ComputerRepository $computerRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(ComputerType::class, $computer);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $status =$form->getData()->getStatus();
+
             $id = $form->getData()->getId();
 
-            if($status === "available"){
+            if($status === "Available"){
 
                 $datas = $computerRepository->findComputerAndInternalLocation($id);
 
                 foreach($datas as $data){
 
-                    $id = $data['internal_location_id'];
+                    $idLocation = $data['id'];
 
-                    $newInternalLocation = $internalLocationRepository->find($id);
+                    $idMaterial = $data['computer_id'];
 
-                    $newInternalLocation->removeComputer($computer);
+                    $statusToUpdate = $computerRepository->find($idMaterial);
+
+                    $statusToUpdate->setStatus('Available');
+
+                    $em->flush($statusToUpdate);
+                    
+
+                    $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                    $newInternalLocation->setComputer( NULL );
+
+                    $em->flush($newInternalLocation);
                     
                 }
 

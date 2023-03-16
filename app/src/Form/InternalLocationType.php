@@ -58,10 +58,10 @@ class InternalLocationType extends AbstractType
                     return $er->createQueryBuilder('l')
                     ->WHERE('l.status=:available')
                     ->ANDWHERE('l.affectation = :interne' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('interne', 'interne' );
+                    ->setParameter('available', 'Available' )
+                    ->setParameter('interne', 'Interne' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('computer', EntityType::class, [
@@ -71,9 +71,9 @@ class InternalLocationType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                     ->WHERE('c.status=:available')
-                    ->setParameter('available', 'available' );
+                    ->setParameter('available', 'Available' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('monitor', EntityType::class, [
@@ -83,9 +83,9 @@ class InternalLocationType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('e')
                     ->WHERE('e.status=:available')
-                    ->setParameter('available', 'available' );
+                    ->setParameter('available', 'Available' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('videoprojector', EntityType::class, [
@@ -95,9 +95,9 @@ class InternalLocationType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('v')
                     ->WHERE('v.status=:available')
-                    ->setParameter('available', 'available' );
+                    ->setParameter('available', 'Available' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('mouse', EntityType::class, [
@@ -108,10 +108,10 @@ class InternalLocationType extends AbstractType
                     return $er->createQueryBuilder('s')
                     ->WHERE('s.status=:available')
                     ->ANDWHERE('s.affectation = :interne' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('interne', 'interne' );
+                    ->setParameter('available', 'Available' )
+                    ->setParameter('interne', 'Interne' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('keyboard', EntityType::class, [
@@ -121,11 +121,9 @@ class InternalLocationType extends AbstractType
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('k')
                     ->WHERE('k.status=:available')
-                    ->ANDWHERE('k.affectation = :interne' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('interne', 'interne' );
+                    ->setParameter('available', 'Available' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
 

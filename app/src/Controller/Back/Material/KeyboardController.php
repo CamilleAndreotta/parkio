@@ -6,6 +6,7 @@ use App\Entity\Keyboard;
 use App\Form\KeyboardType;
 use App\Repository\InternalLocationRepository;
 use App\Repository\KeyboardRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,32 +61,43 @@ class KeyboardController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_keyboard_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, Keyboard $keyboard, KeyboardRepository $keyboardRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(KeyboardType::class, $keyboard);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            $status =$form->getData()->getStatus();
-            $id = $form->getData()->getId();
+                $status =$form->getData()->getStatus();
 
-            if($status === "available"){
+                $id = $form->getData()->getId();
+
+                if($status === "Available"){
 
                 $datas = $keyboardRepository->findKeyboardAndInternalLocation($id);
 
                 foreach($datas as $data){
 
-                    $id = $data['internal_location_id'];
+                    $idLocation = $data['id'];
 
-                    $newInternalLocation = $internalLocationRepository->find($id);
+                    $idMaterial = $data['keyboard_id'];
 
-                    $newInternalLocation->removeKeyboard($keyboard);
+                    $statusToUpdate = $keyboardRepository->find($idMaterial);
+
+                    $statusToUpdate->setStatus('Available');
+                
+                    $em->flush($statusToUpdate);
+
+
+                    $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                    $newInternalLocation->setKeyboard( NULL );
+
+                    $em->flush($newInternalLocation);
                     
                 }
 
             }
-
 
             $keyboardRepository->add($keyboard, true);
 

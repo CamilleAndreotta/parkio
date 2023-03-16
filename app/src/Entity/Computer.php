@@ -43,16 +43,7 @@ class Computer
      * @ORM\Column(type="string", length=255)
      */
     private $status;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=InternalLocation::class, mappedBy="computer")
-     */
-    private $internalLocations;
-
-    public function __construct()
-    {
-        $this->internalLocations = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -119,30 +110,4 @@ class Computer
         return $this;
     }
 
-    /**
-     * @return Collection<int, InternalLocation>
-     */
-    public function getInternalLocations(): Collection
-    {
-        return $this->internalLocations;
-    }
-
-    public function addInternalLocation(InternalLocation $internalLocation): self
-    {
-        if (!$this->internalLocations->contains($internalLocation)) {
-            $this->internalLocations[] = $internalLocation;
-            $internalLocation->addComputer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInternalLocation(InternalLocation $internalLocation): self
-    {
-        if ($this->internalLocations->removeElement($internalLocation)) {
-            $internalLocation->removeComputer($this);
-        }
-
-        return $this;
-    }
 }

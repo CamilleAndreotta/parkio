@@ -39,6 +39,114 @@ class InternalLocationRepository extends ServiceEntityRepository
         }
     }
 
+
+    public function findComputerWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT computer.id, computer.model, computer.status FROM internal_location 
+        INNER JOIN computer ON internal_location.computer_id = computer.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findLaptopWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT laptop.id, laptop.model, laptop.status FROM internal_location 
+        INNER JOIN laptop ON internal_location.laptop_id = laptop.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findMonitorWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT monitor.id, monitor.model, monitor.status FROM internal_location 
+        INNER JOIN monitor ON internal_location.monitor_id = monitor.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findVideoprojectorWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT videoprojector.id, videoprojector.model, videoprojector.status FROM internal_location 
+        INNER JOIN videoprojector ON internal_location.videoprojector_id = videoprojector.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findMouseWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT mouse.id, mouse.model, mouse.status FROM internal_location 
+        INNER JOIN mouse ON internal_location.mouse_id = mouse.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+    public function findKeyboardWithInternalLocationId($id){
+
+        $sql = 
+        "
+        SELECT keyboard.id, keyboard.model, keyboard.status FROM internal_location 
+        INNER JOIN keyboard ON internal_location.keyboard_id = keyboard.id 
+        WHERE internal_location.id = $id ;
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchOne();
+
+    }
+
+
+
+
+
+
 //    /**
 //     * @return InternalLocation[] Returns an array of InternalLocation objects
 //     */
@@ -63,131 +171,5 @@ class InternalLocationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-      
-      /**
-       * Method for find laptop in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithLaptop($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_laptop on internal_location.id = internal_location_laptop.internal_location_id
-        inner join laptop On laptop.id = internal_location_laptop.laptop_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
-
-      /**
-       * Method for find computer in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithComputer($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_computer on internal_location.id = internal_location_computer.internal_location_id
-        inner join computer On computer.id = internal_location_computer.computer_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
-
-      /**
-       * Method for find monitor in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithMonitor($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_monitor on internal_location.id = internal_location_monitor.internal_location_id
-        inner join monitor On monitor.id = internal_location_monitor.monitor_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
-
-      /**
-       * Method for find videoprojector in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithVideoprojector($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_videoprojector on internal_location.id = internal_location_videoprojector.internal_location_id
-        inner join videoprojector On videoprojector.id = internal_location_videoprojector.videoprojector_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
-
-      /**
-       * Method for find mouse in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithMouse($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_mouse on internal_location.id = internal_location_mouse.internal_location_id
-        inner join mouse On mouse.id = internal_location_mouse.mouse_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
-
-      /**
-       * Method for find computer in internal location. Use to change value of status
-       *
-       * @param [type] $id
-       * @return array
-       */
-      public function findInternalLocationWithKeyboard($id){
-        
-        $sql = "
-        Select * from internal_location
-        inner join internal_location_keyboard on internal_location.id = internal_location_keyboard.internal_location_id
-        inner join keyboard On keyboard.id = internal_location_keyboard.keyboard_id
-        Where internal_location.id = $id ";
-
-        $dbal = $this->getEntityManager()->getConnection(); 
-        $statement = $dbal->prepare($sql);
-        $result = $statement->executeQuery();
-        return $result->fetchAllAssociative();
-    
-      }
 
 }

@@ -6,6 +6,7 @@ use App\Entity\Monitor;
 use App\Form\MonitorType;
 use App\Repository\InternalLocationRepository;
 use App\Repository\MonitorRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,27 +61,42 @@ class MonitorController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_monitor_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Monitor $monitor, MonitorRepository $monitorRepository, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, Monitor $monitor, MonitorRepository $monitorRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(MonitorType::class, $monitor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $status =$form->getData()->getStatus();
-            $id = $form->getData()->getId();
+            if ($form->isSubmitted() && $form->isValid()) {
 
-            if($status === "available"){
+                $status =$form->getData()->getStatus();
 
-                $datas = $monitorRepository->findMonitorAndInternalLocation($id);
+                $id = $form->getData()->getId();
 
-                foreach($datas as $data){
+                if ($status === "Available") {
 
-                    $id = $data['internal_location_id'];
+                    $datas = $monitorRepository->findMonitorAndInternalLocation($id);
 
-                    $newInternalLocation = $internalLocationRepository->find($id);
+                    foreach ($datas as $data) {
+                        $idLocation = $data['id'];
 
-                    $newInternalLocation->removeMonitor($monitor);
+                        $idMaterial = $data['monitor_id'];
+
+                        $statusToUpdate = $monitorRepository->find($idMaterial);
+
+                        $statusToUpdate->setStatus('Available');
+
+                        $em->flush($statusToUpdate);
+
+
+                        $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                        $newInternalLocation->setMonitor(null);
+
+                        $em->flush($newInternalLocation);
+
+                    }
                     
                 }
 

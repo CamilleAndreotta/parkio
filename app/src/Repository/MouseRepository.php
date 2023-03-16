@@ -75,7 +75,7 @@ class MouseRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from mouse 
-        Inner Join internal_location_mouse on mouse.id = internal_location_mouse.mouse_id
+        Inner Join internal_location on mouse.id = internal_location.mouse_id
         Where mouse.id = $id;
         ";
 

@@ -19,21 +19,11 @@ class KeyboardType extends AbstractType
                 'constraints' => new NotBlank(),
                 'label' => 'Modèle du clavier',
             ])
-            ->add('affectation', ChoiceType::class, [
-                'label' => 'Usage du matériel',
-                'choices' => [
-                    'Interne' => 'interne',
-                    'Externe' => 'externe',
-                ],
-                'multiple' => false, 
-                'expanded' => true, 
-                'required' => true
-            ])
             ->add('status', ChoiceType::class, [
                 'label' => 'Disponibilité du matériel',
                 'choices' => [
-                    'Disponible' => 'available',
-                    'Indisponible' => 'notAvailable',
+                    'Disponible' => 'Available',
+                    'Indisponible' => 'Not Available',
                 ],
                 'multiple' => false, 
                 'expanded' => true, 

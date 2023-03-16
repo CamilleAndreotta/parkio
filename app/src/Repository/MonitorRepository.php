@@ -75,7 +75,7 @@ class MonitorRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from monitor
-        Inner Join internal_location_monitor on monitor.id = internal_location_monitor.monitor_id
+        Inner Join internal_location on monitor.id = internal_location.monitor_id
         Where monitor.id = $id;
         ";
 

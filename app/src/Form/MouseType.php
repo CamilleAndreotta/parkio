@@ -22,8 +22,8 @@ class MouseType extends AbstractType
             ->add('affectation', ChoiceType::class, [
                 'label' => 'Usage du matériel',
                 'choices' => [
-                    'Interne' => 'interne',
-                    'Externe' => 'externe',
+                    'Interne' => 'Interne',
+                    'Externe' => 'Externe',
                 ],
                 'multiple' => false, 
                 'expanded' => true, 
@@ -32,8 +32,8 @@ class MouseType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'label' => 'Disponibilité du matériel',
                 'choices' => [
-                    'Disponible' => 'available',
-                    'Indisponible' => 'notAvailable',
+                    'Disponible' => 'Available',
+                    'Indisponible' => 'Not Available',
                 ],
                 'multiple' => false, 
                 'expanded' => true, 

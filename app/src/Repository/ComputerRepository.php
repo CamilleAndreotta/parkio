@@ -75,7 +75,7 @@ class ComputerRepository extends ServiceEntityRepository
         $sql = 
         "
         Select * from computer 
-        Inner Join internal_location_computer on computer.id = internal_location_computer.computer_id
+        Inner Join internal_location on computer.id = internal_location.computer_id
         Where computer.id = $id;
         ";
 

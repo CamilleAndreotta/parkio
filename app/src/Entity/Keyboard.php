@@ -27,28 +27,8 @@ class Keyboard
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $affectation;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $status;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ExternalLocation::class, mappedBy="keyboard")
-     */
-    private $externalLocations;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=InternalLocation::class, mappedBy="keyboard")
-     */
-    private $internalLocations;
-
-    public function __construct()
-    {
-        $this->externalLocations = new ArrayCollection();
-        $this->internalLocations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -67,18 +47,6 @@ class Keyboard
         return $this;
     }
 
-    public function getAffectation(): ?string
-    {
-        return $this->affectation;
-    }
-
-    public function setAffectation(string $affectation): self
-    {
-        $this->affectation = $affectation;
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -91,57 +59,4 @@ class Keyboard
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExternalLocation>
-     */
-    public function getExternalLocations(): Collection
-    {
-        return $this->externalLocations;
-    }
-
-    public function addExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if (!$this->externalLocations->contains($externalLocation)) {
-            $this->externalLocations[] = $externalLocation;
-            $externalLocation->addKeyboard($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if ($this->externalLocations->removeElement($externalLocation)) {
-            $externalLocation->removeKeyboard($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, InternalLocation>
-     */
-    public function getInternalLocations(): Collection
-    {
-        return $this->internalLocations;
-    }
-
-    public function addInternalLocation(InternalLocation $internalLocation): self
-    {
-        if (!$this->internalLocations->contains($internalLocation)) {
-            $this->internalLocations[] = $internalLocation;
-            $internalLocation->addKeyboard($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInternalLocation(InternalLocation $internalLocation): self
-    {
-        if ($this->internalLocations->removeElement($internalLocation)) {
-            $internalLocation->removeKeyboard($this);
-        }
-
-        return $this;
-    }
 }

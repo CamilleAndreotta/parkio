@@ -7,6 +7,7 @@ use App\Form\InternalLocationType;
 use App\Form\LaptopType;
 use App\Repository\InternalLocationRepository;
 use App\Repository\LaptopRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,32 +62,41 @@ class LaptopController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_back_material_laptop_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, Laptop $laptop, LaptopRepository $laptopRepository, InternalLocationRepository $internalLocationRepository, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(LaptopType::class, $laptop);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-    
+
             $status =$form->getData()->getStatus();
-            $id = $form->getData()->getId();
 
-            if($status === "available"){
+                $id = $form->getData()->getId();
 
-                $datas = $laptopRepository->findLaptopAndInternalLocation($id);
+                if ($status === "Available") {
+                    $datas = $laptopRepository->findLaptopAndInternalLocation($id);
 
-                foreach($datas as $data){
+                    foreach ($datas as $data) {
+                        
+                        $idLocation = $data['id'];
 
-                    $id = $data['internal_location_id'];
+                        $idMaterial = $data['laptop_id'];
 
-                    $newInternalLocation = $internalLocationRepository->find($id);
+                        $statusToUpdate = $laptopRepository->find($idMaterial);
 
-                    $newInternalLocation->removeLaptop($laptop);
+                        $statusToUpdate->setStatus('Available');
+
+                        $em->flush($statusToUpdate);
+
+
+                        $newInternalLocation = $internalLocationRepository->find($idLocation);
+
+                        $newInternalLocation->setLaptop(null);
+
+                        $em->flush($newInternalLocation);
+                    }
 
                 }
-
-            }
-
 
             $laptopRepository->add($laptop, true);
 

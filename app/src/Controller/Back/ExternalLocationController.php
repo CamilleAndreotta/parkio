@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/back/external/location")
  */
 class ExternalLocationController extends AbstractController
-{
+{   
+
     /**
      * @Route("/", name="app_back_external_location_index", methods={"GET"})
      */

@@ -34,15 +34,6 @@ class Videoprojector
      */
     private $status;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=InternalLocation::class, mappedBy="videoprojector")
-     */
-    private $internalLocations;
-
-    public function __construct()
-    {
-        $this->internalLocations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -85,30 +76,5 @@ class Videoprojector
         return $this;
     }
 
-    /**
-     * @return Collection<int, InternalLocation>
-     */
-    public function getInternalLocations(): Collection
-    {
-        return $this->internalLocations;
-    }
 
-    public function addInternalLocation(InternalLocation $internalLocation): self
-    {
-        if (!$this->internalLocations->contains($internalLocation)) {
-            $this->internalLocations[] = $internalLocation;
-            $internalLocation->addVideoprojector($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInternalLocation(InternalLocation $internalLocation): self
-    {
-        if ($this->internalLocations->removeElement($internalLocation)) {
-            $internalLocation->removeVideoprojector($this);
-        }
-
-        return $this;
-    }
 }

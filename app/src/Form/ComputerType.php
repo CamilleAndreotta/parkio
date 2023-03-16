@@ -37,8 +37,8 @@ class ComputerType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'label' => 'Disponibilité du matériel',
                 'choices' => [
-                    'Disponible' => 'available',
-                    'Indisponible' => 'notAvailable',
+                    'Disponible' => 'Available',
+                    'Indisponible' => 'Not Available',
                 ],
                 'multiple' => false, 
                 'expanded' => true, 

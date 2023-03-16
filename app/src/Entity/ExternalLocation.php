@@ -55,27 +55,15 @@ class ExternalLocation
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Laptop::class, inversedBy="externalLocations")
+     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist", "remove"})
      */
     private $laptop;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Mouse::class, inversedBy="externalLocations")
+     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist", "remove"})
      */
     private $mouse;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Keyboard::class, inversedBy="externalLocations")
-     */
-    private $keyboard;
-
-
-    public function __construct()
-    {
-        $this->laptop = new ArrayCollection();
-        $this->mouse = new ArrayCollection();
-        $this->keyboard = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -166,76 +154,29 @@ class ExternalLocation
         return $this;
     }
 
-    /**
-     * @return Collection<int, Laptop>
-     */
-    public function getLaptop(): Collection
+    public function getLaptop(): ?Laptop
     {
         return $this->laptop;
     }
 
-    public function addLaptop(Laptop $laptop): self
+    public function setLaptop(?Laptop $laptop): self
     {
-        if (!$this->laptop->contains($laptop)) {
-            $this->laptop[] = $laptop;
-        }
+        $this->laptop = $laptop;
 
         return $this;
     }
 
-    public function removeLaptop(Laptop $laptop): self
-    {
-        $this->laptop->removeElement($laptop);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Mouse>
-     */
-    public function getMouse(): Collection
+    public function getMouse(): ?Mouse
     {
         return $this->mouse;
     }
 
-    public function addMouse(Mouse $mouse): self
+    public function setMouse(?Mouse $mouse): self
     {
-        if (!$this->mouse->contains($mouse)) {
-            $this->mouse[] = $mouse;
-        }
+        $this->mouse = $mouse;
 
         return $this;
     }
-
-    public function removeMouse(Mouse $mouse): self
-    {
-        $this->mouse->removeElement($mouse);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Keyboard>
-     */
-    public function getKeyboard(): Collection
-    {
-        return $this->keyboard;
-    }
-
-    public function addKeyboard(Keyboard $keyboard): self
-    {
-        if (!$this->keyboard->contains($keyboard)) {
-            $this->keyboard[] = $keyboard;
-        }
-
-        return $this;
-    }
-
-    public function removeKeyboard(Keyboard $keyboard): self
-    {
-        $this->keyboard->removeElement($keyboard);
-
-        return $this;
-    }
+    
 
 }

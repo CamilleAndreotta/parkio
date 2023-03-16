@@ -49,21 +49,6 @@ class Laptop
      */
     private $status;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ExternalLocation::class, mappedBy="laptop")
-     */
-    private $externalLocations;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=InternalLocation::class, mappedBy="laptop")
-     */
-    private $internalLocations;
-
-    public function __construct()
-    {
-        $this->externalLocations = new ArrayCollection();
-        $this->internalLocations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -142,57 +127,4 @@ class Laptop
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExternalLocation>
-     */
-    public function getExternalLocations(): Collection
-    {
-        return $this->externalLocations;
-    }
-
-    public function addExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if (!$this->externalLocations->contains($externalLocation)) {
-            $this->externalLocations[] = $externalLocation;
-            $externalLocation->addLaptop($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExternalLocation(ExternalLocation $externalLocation): self
-    {
-        if ($this->externalLocations->removeElement($externalLocation)) {
-            $externalLocation->removeLaptop($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, InternalLocation>
-     */
-    public function getInternalLocations(): Collection
-    {
-        return $this->internalLocations;
-    }
-
-    public function addInternalLocation(InternalLocation $internalLocation): self
-    {
-        if (!$this->internalLocations->contains($internalLocation)) {
-            $this->internalLocations[] = $internalLocation;
-            $internalLocation->addLaptop($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInternalLocation(InternalLocation $internalLocation): self
-    {
-        if ($this->internalLocations->removeElement($internalLocation)) {
-            $internalLocation->removeLaptop($this);
-        }
-
-        return $this;
-    }
 }

@@ -68,10 +68,10 @@ class ExternalLocationType extends AbstractType
                     return $er->createQueryBuilder('l')
                     ->WHERE('l.status=:available')
                     ->ANDWHERE('l.affectation = :externe' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('externe', 'externe' );
+                    ->setParameter('available', 'Available' )
+                    ->setParameter('externe', 'Externe' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false,
             ])
             ->add('mouse', EntityType::class, [
@@ -82,27 +82,12 @@ class ExternalLocationType extends AbstractType
                     return $er->createQueryBuilder('m')
                     ->WHERE('m.status=:available')
                     ->ANDWHERE('m.affectation = :externe' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('externe', 'externe' );
+                    ->setParameter('available', 'Available' )
+                    ->setParameter('externe', 'Externe' );
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'required' => false
             ])
-            ->add('keyboard', EntityType::class, [
-                'class' => Keyboard::class,
-                'label' => 'Affecter un clavier',
-                'choice_label' => 'model',
-                'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('k')
-                    ->WHERE('k.status=:available')
-                    ->ANDWHERE('k.affectation = :externe' )
-                    ->setParameter('available', 'available' )
-                    ->setParameter('externe', 'externe' );
-                },
-                'multiple' => true,
-                'required' => false
-            ])
-            
             
         ;
     }
