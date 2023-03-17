@@ -23,7 +23,7 @@ public function updateStatus($form, ExternalLocationRepository $externalLocation
             
             $materialToUpdate->setStatus('Available');
 
-            $em->flush($materialToUpdate);
+            $em->persist($materialToUpdate);
         }
 
         if ($form->getData()->getLaptop() != null) {
@@ -33,8 +33,6 @@ public function updateStatus($form, ExternalLocationRepository $externalLocation
             $laptop->setStatus('Not Available');
     
             $em->persist($laptop);
-    
-            $em->flush();
         
         }
         

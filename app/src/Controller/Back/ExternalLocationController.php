@@ -130,6 +130,8 @@ class ExternalLocationController extends AbstractController
         $form = $this->createForm(ExternalLocationType::class, $externalLocation);
         $form->handleRequest($request);
 
+        $id = $form->getData()->getId();
+
         if ($form->isSubmitted() && $form->isValid()) {
 
 
@@ -162,6 +164,8 @@ class ExternalLocationController extends AbstractController
         return $this->renderForm('back/external_location/edit.html.twig', [
             'external_location' => $externalLocation,
             'form' => $form,
+            'laptop' => $externalLocationRepository->find($id)->getLaptop(),
+            'mouse' => $externalLocationRepository->find($id)->getMouse(),
         ]);
     }
 

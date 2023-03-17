@@ -22,7 +22,7 @@ public function updateStatus($form, InternalLocationRepository $internalLocation
         if ($materialToUpdate != null) {
             $materialToUpdate->setStatus('Available');
 
-            $em->flush($materialToUpdate);
+            $em->persist($materialToUpdate);
         }
 
         if ($form->getData()->getKeyboard() != null) {
@@ -33,8 +33,6 @@ public function updateStatus($form, InternalLocationRepository $internalLocation
     
             $em->persist($keyboard);
     
-            $em->flush();
-        
         }
         
     }

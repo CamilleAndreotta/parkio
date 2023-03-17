@@ -23,7 +23,7 @@ public function updateStatus($form, ExternalLocationRepository $externalLocation
             
             $materialToUpdate->setStatus('Available');
 
-            $em->flush($materialToUpdate);
+            $em->persist($materialToUpdate);
         }
 
         if ($form->getData()->getMouse() != null) {
@@ -33,8 +33,6 @@ public function updateStatus($form, ExternalLocationRepository $externalLocation
             $mouse->setStatus('Not Available');
     
             $em->persist($mouse);
-    
-            $em->flush();
         
         }
 

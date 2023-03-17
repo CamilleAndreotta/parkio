@@ -9,5 +9,46 @@
 
     <a href="{{ path('app_back_external_location_index') }}">back to list</a>
 
+
     {{ include('back/external_location/_delete_form.html.twig') }}
+
+
+    <div>
+    
+        <h2>Liste du matériel </h2>
+
+        <h3>Ordinateur portable </h3>
+
+        {% if laptop != null %}
+
+        <div class = "materialCard">
+
+            <h4>{{ laptop.model }}</h4>
+
+            <a href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+
+        </div>
+
+        {% endif %}
+
+
+        <h3>Souris </h3>
+
+        {% if mouse != null %}
+
+        <div class = "materialCard">
+
+            <h4>{{ mouse.model }}</h4>
+
+            <a href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+
+        </div>
+
+        {% endif %}
+
+ 
+    </div>
+
+
+
 {% endblock %}
