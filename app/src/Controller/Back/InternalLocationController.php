@@ -2,9 +2,7 @@
 
 namespace App\Controller\Back;
 
-use App\Entity\Computer;
 use App\Entity\InternalLocation;
-use App\Entity\Keyboard;
 use App\Form\InternalLocationType;
 
 use App\Repository\MouseRepository;
@@ -183,8 +181,9 @@ class InternalLocationController extends AbstractController
     {   
 
         $form = $this->createForm(InternalLocationType::class, $internalLocation);
-
         $form->handleRequest($request);
+
+        $id = $form->getData()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -255,8 +254,16 @@ class InternalLocationController extends AbstractController
         }
 
         return $this->renderForm('back/internal_location/edit.html.twig', [
+            
             'internal_location' => $internalLocation,
             'form' => $form,
+            'laptop' => $internalLocationRepository->find($id)->getLaptop(),
+            'computer' => $internalLocationRepository->find($id)->getComputer(),
+            'monitor' => $internalLocationRepository->find($id)->getMonitor(),
+            'videoprojector' => $internalLocationRepository->find($id)->getVideoprojector(),
+            'mouse' => $internalLocationRepository->find($id)->getMouse(),
+            'keyboard' => $internalLocationRepository->find($id)->getKeyboard(),
+
         ]);
     }
 

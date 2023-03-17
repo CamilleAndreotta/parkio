@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ExternalLocation{% endblock %}
+{% block title %}Editer un prêt{% endblock %}
 
 {% block body %}
-    <h1>Edit ExternalLocation</h1>
+
+    <h1>Editer un prêt à un utilisateur externe</h1>
 
     {{ include('back/external_location/_form.html.twig', {'button_label': 'Update'}) }}
 
@@ -15,13 +16,13 @@
 
     <div>
     
-        <h2>Liste du matériel </h2>
-
-        <h3>Ordinateur portable </h3>
+        <h2>Liste du matériel assigné </h2>
 
         {% if laptop != null %}
 
         <div class = "materialCard">
+
+            <h3 class="category__tag" >Ordinateur portable </h3>
 
             <h4>{{ laptop.model }}</h4>
 
@@ -32,11 +33,11 @@
         {% endif %}
 
 
-        <h3>Souris </h3>
-
         {% if mouse != null %}
 
         <div class = "materialCard">
+
+            <h3 class="category__tag" >Souris </h3>
 
             <h4>{{ mouse.model }}</h4>
 

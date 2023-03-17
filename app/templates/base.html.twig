@@ -22,6 +22,58 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+    <header>
+
+        <div>
+
+            <a href="" class=""></a>
+        
+        </div>
+
+        <nav>
+
+            <ul>
+                <li> <a href="">Parkio</a> </li>
+                <li> <a href="">Les fonctionnalités </a> </li>
+                <li> Documentation
+                    <ul>
+                        <li> <a href="">Utilisateur</a> </li>
+                        <li> <a href="">Administrateur</a> </li>
+                    </ul>
+                </li>
+                <li>Espace Utilisateur
+                    <ul>
+                        <li> <a href="">Mon profil</a> </li>
+                        <li> <a href="">Mon matériel</a> </li>
+                        <li> <a href="">Mes demandes de prêts</a> </li>
+                    </ul>
+                </li>
+                <li>Espace Administrateur
+                    <ul>
+                        <li> <a href="{{ path('app_back_user_index')}}">Gestion des utilisteurs</a> </li>
+                        <li>Gestion des prêts 
+                            <ul>
+                                <li> <a href="{{ path('app_back_internal_location_index')}}">Prêt interne</a> </li>
+                                <li> <a href="{{ path('app_back_external_location_index')}}">Prêt externe</a> </li>
+                            </ul>
+                        </li>
+                        <li>Gestion du matériel 
+                            <ul>
+                                <li> <a href="{{ path('app_back_material_computer_index')}}">Ordinateurs</a> </li>
+                                <li> <a href="{{ path('app_back_material_laptop_index')}}">Portables</a> </li>
+                                <li> <a href="{{ path('app_back_material_monitor_index')}}">Ecrans</a> </li>
+                                <li> <a href="{{ path('app_back_material_videoprojector_index')}}">Videoprojecteurs</a> </li>
+                                <li> <a href="{{ path('app_back_material_keyboard_index')}}">Claviers</a> </li>
+                                <li> <a href="{{ path('app_back_material_mouse_index')}}">Souris</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </nav>
+
+    </header>
     <body>
         {% block body %}{% endblock %}
     </body>
