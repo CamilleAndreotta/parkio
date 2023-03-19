@@ -1,0 +1,240 @@
+.main-container{
+    display:flex;
+    flex-direction: column;
+}
+
+/* CSS Header */
+
+header{
+    box-sizing: border-box;
+    margin: 0;
+    height: 10vh;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: pink;
+}
+
+.header__box{
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.header__box>.logo-box{
+    display: flex;
+    width: 50%;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.header__box>.siteName{
+    display: none;
+}
+
+.header__box>.button__box{
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__button{
+    display: flex;
+    flex-direction: column;
+    width: 40px; 
+    height: 40px;
+    border:1px solid black; 
+    border-radius: 0.5rem;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5em;
+    position: relative;
+}
+
+
+.header__button .button__line{
+    width: 90%;
+    border :1px solid black; 
+}
+
+.button__line--display-true{
+    display: block;
+}
+
+.button__line--display-false{
+    display: none;
+}
+
+.button__line--display-true:first-child{
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.button__line--display-true:last-child{
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+
+/* End CSS Header */
+/* CSS Navbar */
+
+.nav__side{
+    flex-direction: column;
+    background-color: grey;
+    position:fixed; 
+    width: 100vw;
+    height: 100vh !important;
+    bottom:0;
+    z-index:99;
+    padding-top: 12vh;
+}
+
+.nav__side-open{
+    display:flex; 
+}
+
+.nav__side-close{
+    display:none;
+}
+
+.nav__bloc ul li{
+    list-style: none;
+    margin-bottom:0.25em; 
+}
+
+.nav__bloc ul li a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold; 
+}
+
+.nav__subnav{
+    color:grey;
+    font-weight: bold;
+}
+
+.nav__subnav__subnav{
+    color:grey;
+    font-weight: bold;
+}
+
+
+/* End CSS Navbar */
+/* CSS content */
+.content-container{
+    width: 100vw;
+    flex-direction: column;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.content__mobile-open{
+    display: flex;
+}
+
+.content__mobile-close{
+    display: none;
+}
+/* End CSS Content */
+/* CSS Responsive content*/
+
+.mobile__display-none{
+    display: none;
+}
+
+/* End Responsive content*/
+
+@media (min-width:425px){
+
+    .header__box>.button__box{
+        display: flex;
+        width: 50%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+}
+
+@media (min-width:768px){
+
+    .header__box>.logo-box{
+        display: flex;
+        width: 30%;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 1rem;
+    }
+    
+    .header__box>.siteName{
+        display: flex;
+        width: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header__box>.siteName p{
+        display: inline-block;
+        font-size:2rem;
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+    }
+
+    .header__box>.button__box{
+        display: flex;
+        width: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .nav__side{
+        flex-direction: column;
+        background-color: pink;
+        position:fixed; 
+        width: 40vw;
+        height: 100vh;
+        bottom:0;
+        z-index:99;
+    }
+
+    .content__mobile-close{
+        display: flex;
+    }
+    
+}
+
+@media (min-width:1024px){
+
+    .nav__side{
+        width: 25vw;
+    }
+
+    .content__mobile-close{
+        display: flex;
+        width: 75vw;
+        position: relative;
+        left: 25vw;
+        z-index: 99;
+    }
+
+    .mobile__display-none{
+    display: table-cell;
+}
+
+}
+
+
+@media (min-width:1440px){
+
+    .nav__side{
+        width: 20vw;
+    }
+
+
+}

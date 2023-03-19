@@ -52,6 +52,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $externalLocations;
 
+    public function __toString()
+    {
+        return $this->internalUser;
+    }
+
     public function __construct()
     {
         $this->internalLocations = new ArrayCollection();

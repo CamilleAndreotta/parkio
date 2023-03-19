@@ -8,20 +8,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th class="mobile__display-none">Id</th>
+                <th>User</th>
                 <th>DateStart</th>
-                <th>DateEnd</th>
-                <th>Information</th>
+                <th class="mobile__display-none">DateEnd</th>
+                <th class="mobile__display-none">Information</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for internal_location in internal_locations %}
             <tr>
-                <td>{{ internal_location.id }}</td>
+                <td class="mobile__display-none">{{ internal_location.id }}</td>
+                <td>{{ internal_location.user}}</td>
                 <td>{{ internal_location.dateStart ? internal_location.dateStart|date('Y-m-d') : '' }}</td>
-                <td>{{ internal_location.dateEnd ? internal_location.dateEnd|date('Y-m-d') : '' }}</td>
-                <td>{{ internal_location.information }}</td>
+                <td class="mobile__display-none">{{ internal_location.dateEnd ? internal_location.dateEnd|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.information }}</td>
                 <td>
                     <a href="{{ path('app_back_internal_location_show', {'id': internal_location.id}) }}">show</a>
                     <a href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">edit</a>

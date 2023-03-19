@@ -10,6 +10,9 @@
             integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <!-- Bootstrap icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <!-- CSS StyleSheet-->
+        <link rel="stylesheet" href="{{asset('css/template.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -22,59 +25,94 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <header>
+    
+    <body>
 
-        <div>
+    <div class="main-container">
 
-            <a href="" class=""></a>
+        <header>
+            
+            <div class="header__box">
+                <div class="logo-box">
+                    <a href="" class="logo">logo</a>
+                </div>
+                <div class="siteName siteName--display-true">
+                    <p>Parkio</p>
+                </div>
+                <div class="button__box">
+                    <div class="header__button nav-close">
+                        <span class="button__line"></span>
+                        <span class="button__line"></span>
+                        <span class="button__line"></span>
+                    </div>
+                </div>
+            </div>
         
+        </header>
+
+        <div class="nav__side nav__side-close">
+        
+
+            <nav class="nav__bloc">
+
+                <ul>
+                    <li> <a href="">Parkio</a> </li>
+                    <li> <a href="">Les fonctionnalités </a> </li>
+                    <li> <span class="nav__subnav">Documentation</span> 
+                        <ul>
+                            <li> <a href="">Utilisateur</a> </li>
+                            <li> <a href="">Administrateur</a> </li>
+                        </ul>
+                    </li>
+                    <li> <span class="nav__subnav">Espace Utilisateur</span>
+                        <ul>
+                            <li> <a href="">Mon profil</a> </li>
+                            <li> <a href="">Mon matériel</a> </li>
+                            <li> <a href="">Mes demandes de prêts</a> </li>
+                        </ul>
+                    </li>
+                    <li><span class="nav__subnav">Espace Administrateur</span>
+                        <ul>
+                            <li> <a href="{{ path('app_back_user_index')}}">Gestion des utilisteurs</a> </li>
+                            <li><span class="nav__subnav__subnav">Gestion des prêts</span>
+                                <ul>
+                                    <li> <a href="{{ path('app_back_internal_location_index')}}">Prêt interne</a> </li>
+                                    <li> <a href="{{ path('app_back_external_location_index')}}">Prêt externe</a> </li>
+                                </ul>
+                            </li>
+                            <li><span class="nav__subnav__subnav">Gestion du matériel</span>
+                                <ul>
+                                    <li> <a href="{{ path('app_back_material_computer_index')}}">Ordinateurs</a> </li>
+                                    <li> <a href="{{ path('app_back_material_laptop_index')}}">Portables</a> </li>
+                                    <li> <a href="{{ path('app_back_material_monitor_index')}}">Ecrans</a> </li>
+                                    <li> <a href="{{ path('app_back_material_videoprojector_index')}}">Videoprojecteurs</a> </li>
+                                    <li> <a href="{{ path('app_back_material_keyboard_index')}}">Claviers</a> </li>
+                                    <li> <a href="{{ path('app_back_material_mouse_index')}}">Souris</a> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </nav>
+
         </div>
 
-        <nav>
+        <div class="content-container content__mobile-open">
+        
+            {% block body %}{% endblock %}
+        
+        </div>
+    </div>
+    <footer>
+    
+    
+    
+    </footer>
 
-            <ul>
-                <li> <a href="">Parkio</a> </li>
-                <li> <a href="">Les fonctionnalités </a> </li>
-                <li> Documentation
-                    <ul>
-                        <li> <a href="">Utilisateur</a> </li>
-                        <li> <a href="">Administrateur</a> </li>
-                    </ul>
-                </li>
-                <li>Espace Utilisateur
-                    <ul>
-                        <li> <a href="">Mon profil</a> </li>
-                        <li> <a href="">Mon matériel</a> </li>
-                        <li> <a href="">Mes demandes de prêts</a> </li>
-                    </ul>
-                </li>
-                <li>Espace Administrateur
-                    <ul>
-                        <li> <a href="{{ path('app_back_user_index')}}">Gestion des utilisteurs</a> </li>
-                        <li>Gestion des prêts 
-                            <ul>
-                                <li> <a href="{{ path('app_back_internal_location_index')}}">Prêt interne</a> </li>
-                                <li> <a href="{{ path('app_back_external_location_index')}}">Prêt externe</a> </li>
-                            </ul>
-                        </li>
-                        <li>Gestion du matériel 
-                            <ul>
-                                <li> <a href="{{ path('app_back_material_computer_index')}}">Ordinateurs</a> </li>
-                                <li> <a href="{{ path('app_back_material_laptop_index')}}">Portables</a> </li>
-                                <li> <a href="{{ path('app_back_material_monitor_index')}}">Ecrans</a> </li>
-                                <li> <a href="{{ path('app_back_material_videoprojector_index')}}">Videoprojecteurs</a> </li>
-                                <li> <a href="{{ path('app_back_material_keyboard_index')}}">Claviers</a> </li>
-                                <li> <a href="{{ path('app_back_material_mouse_index')}}">Souris</a> </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+    <script src="{{asset('js/nav.js')}}"></script>
 
-        </nav>
-
-    </header>
-    <body>
-        {% block body %}{% endblock %}
     </body>
+    </div>
+    
 </html>
