@@ -3,19 +3,31 @@
 {% block title %}ExternalLocation index{% endblock %}
 
 {% block body %}
-    <h1>ExternalLocation index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des locations à des utilisateurs externes</h1>
+    </div>
+    
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_external_location_new') }}">Créer un ticket</a>
+
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th class="mobile__display-none" >Id</th>
-                <th>ExternalUser</th>
+                <th>Nom et prénom</th>
                 <th class="mobile__display-none" >Email</th>
-                <th class="mobile__display-none">Phone</th>
+                <th class="mobile__display-none">Tel</th>
                 <th class="mobile__display-none">Message</th>
-                <th>DateStart</th>
-                <th class="mobile__display-none">DateEnd</th>
-                <th>actions</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +41,18 @@
                 <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
                 <td class="mobile__display-none">{{ external_location.dateEnd ? external_location.dateEnd|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">show</a>
-                    <a href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucuns tickets trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_external_location_new') }}">Create new</a>
+</div>
 {% endblock %}
+

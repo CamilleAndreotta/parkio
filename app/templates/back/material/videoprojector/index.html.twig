@@ -3,37 +3,48 @@
 {% block title %}Videoprojector index{% endblock %}
 
 {% block body %}
-    <h1>Videoprojector index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des vidéoprojecteurs</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_videoprojector_new') }}">Ajouter un vidéoprojecteur</a>
+    
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>PurchaseDate</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
+                <th class="mobile__display-none">Date d'achat</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for videoprojector in videoprojectors %}
             <tr>
-                <td>{{ videoprojector.id }}</td>
+                <td class="mobile__display-none">{{ videoprojector.id }}</td>
                 <td>{{ videoprojector.model }}</td>
-                <td>{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ videoprojector.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucuns vidéoprojecteur trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_videoprojector_new') }}">Create new</a>
+</div>
 {% endblock %}

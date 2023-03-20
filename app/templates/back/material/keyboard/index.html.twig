@@ -3,35 +3,48 @@
 {% block title %}Keyboard index{% endblock %}
 
 {% block body %}
-    <h1>Keyboard index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des claviers</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_keyboard_new') }}">Ajouter un clavier</a>
+
+    </div>
+
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for keyboard in keyboards %}
             <tr>
-                <td>{{ keyboard.id }}</td>
+                <td class="mobile__display-none">{{ keyboard.id }}</td>
                 <td>{{ keyboard.model }}</td>
                 <td>{{ keyboard.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucuns claviers trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_keyboard_new') }}">Create new</a>
+
+</div>
 {% endblock %}

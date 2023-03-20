@@ -3,43 +3,55 @@
 {% block title %}Laptop index{% endblock %}
 
 {% block body %}
-    <h1>Laptop index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des portables</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_laptop_new') }}">Ajouter un portable</a>
+
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>SerialNumber</th>
-                <th>Password</th>
-                <th>PurchaseDate</th>
-                <th>Affectation</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
+                <th class="mobile__display-none">Numéro de série</th>
+                <th class="mobile__display-none">Mot de passe</th>
+                <th class="mobile__display-none">Date d'achat</th>
+                <th class="mobile__display-none">Affectation</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for laptop in laptops %}
             <tr>
-                <td>{{ laptop.id }}</td>
+                <td class="mobile__display-none">{{ laptop.id }}</td>
                 <td>{{ laptop.model }}</td>
-                <td>{{ laptop.serialNumber }}</td>
-                <td>{{ laptop.password }}</td>
-                <td>{{ laptop.purchaseDate ? laptop.purchaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ laptop.affectation }}</td>
+                <td class="mobile__display-none">{{ laptop.serialNumber }}</td>
+                <td class="mobile__display-none">{{ laptop.password }}</td>
+                <td class="mobile__display-none">{{ laptop.purchaseDate ? laptop.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ laptop.affectation }}</td>
                 <td>{{ laptop.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_laptop_show', {'id': laptop.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_laptop_show', {'id': laptop.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucuns portables trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_laptop_new') }}">Create new</a>
+
+</div>
 {% endblock %}

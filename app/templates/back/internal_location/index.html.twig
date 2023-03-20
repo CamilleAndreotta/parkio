@@ -3,17 +3,28 @@
 {% block title %}InternalLocation index{% endblock %}
 
 {% block body %}
-    <h1>InternalLocation index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des locations à des utilisateurs internes</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_internal_location_new') }}">Créer un ticket</a>
+
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th class="mobile__display-none">Id</th>
-                <th>User</th>
-                <th>DateStart</th>
-                <th class="mobile__display-none">DateEnd</th>
-                <th class="mobile__display-none">Information</th>
-                <th>actions</th>
+                <th>Nom et prénom</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th class="mobile__display-none">Informations</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,17 +36,18 @@
                 <td class="mobile__display-none">{{ internal_location.dateEnd ? internal_location.dateEnd|date('Y-m-d') : '' }}</td>
                 <td class="mobile__display-none">{{ internal_location.information }}</td>
                 <td>
-                    <a href="{{ path('app_back_internal_location_show', {'id': internal_location.id}) }}">show</a>
-                    <a href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_internal_location_show', {'id': internal_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucuns tickets trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_internal_location_new') }}">Create new</a>
+
+</div>
 {% endblock %}

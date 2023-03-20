@@ -3,41 +3,53 @@
 {% block title %}Computer index{% endblock %}
 
 {% block body %}
-    <h1>Computer index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des ordinateurs fixes</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_computer_new') }}">Ajouter un ordinateur</a>
+
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>SerialNumber</th>
-                <th>Password</th>
-                <th>PurchaseDate</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
+                <th class="mobile__display-none">Numéro de Série</th>
+                <th class="mobile__display-none">Mot de Passe</th>
+                <th class="mobile__display-none">Date d'achat</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for computer in computers %}
             <tr>
-                <td>{{ computer.id }}</td>
+                <td class="mobile__display-none">{{ computer.id }}</td>
                 <td>{{ computer.model }}</td>
-                <td>{{ computer.serialNumber }}</td>
-                <td>{{ computer.password }}</td>
-                <td>{{ computer.purchaseDate ? computer.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ computer.serialNumber }}</td>
+                <td class="mobile__display-none">{{ computer.password }}</td>
+                <td class="mobile__display-none">{{ computer.purchaseDate ? computer.purchaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ computer.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_computer_show', {'id': computer.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_computer_edit', {'id': computer.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_computer_show', {'id': computer.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_computer_edit', {'id': computer.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucuns ordinateurs trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_computer_new') }}">Create new</a>
+
+</div>
 {% endblock %}

@@ -3,37 +3,49 @@
 {% block title %}Mouse index{% endblock %}
 
 {% block body %}
-    <h1>Mouse index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des souris</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_mouse_new') }}">Ajouter une souris</a>
+
+    </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>Affectation</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
+                <th class="mobile__display-none">Affectation</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for mouse in mice %}
             <tr>
-                <td>{{ mouse.id }}</td>
+                <td class="mobile__display-none">{{ mouse.id }}</td>
                 <td>{{ mouse.model }}</td>
-                <td>{{ mouse.affectation }}</td>
+                <td class="mobile__display-none">{{ mouse.affectation }}</td>
                 <td>{{ mouse.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucunes souris trouvées</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_mouse_new') }}">Create new</a>
+
+</div>
 {% endblock %}

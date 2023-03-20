@@ -3,37 +3,50 @@
 {% block title %}Monitor index{% endblock %}
 
 {% block body %}
-    <h1>Monitor index</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Liste des écrans</h1>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_back_material_monitor_new') }}">Ajouter un écran</a>
+
+    </div>
+
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>PurchaseDate</th>
+                <th class="mobile__display-none">Id</th>
+                <th>Modèle</th>
+                <th class="mobile__display-none">Date d'achat</th>
                 <th>Status</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for monitor in monitors %}
             <tr>
-                <td>{{ monitor.id }}</td>
+                <td class="mobile__display-none">{{ monitor.id }}</td>
                 <td>{{ monitor.model }}</td>
-                <td>{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ monitor.status }}</td>
                 <td>
-                    <a href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">show</a>
-                    <a href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">edit</a>
+                    <a class="index__btn-show" href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucuns écrans trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_monitor_new') }}">Create new</a>
+
+</div>
 {% endblock %}
