@@ -1,0 +1,33 @@
+<div class="edit__container-title">
+    <h2>Liste du matériel assigné </h2>
+</div>
+
+<div class="container__list-material">
+
+    
+
+    {% if external_location.laptop != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Ordinateur portable </h3>
+
+            <h4>{{ external_location.laptop.model }}</h4>
+
+        </div>
+
+    {% endif %}
+
+    {% if external_location.mouse != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Souris </h3>
+
+            <h4>{{ external_location.mouse.model }}</h4>
+
+        </div>
+
+    {% endif %}
+        
+</div>        

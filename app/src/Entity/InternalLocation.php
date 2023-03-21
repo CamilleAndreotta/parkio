@@ -40,32 +40,32 @@ class InternalLocation
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Computer::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Computer::class, cascade={"persist"})
      */
     private $computer;
 
     /**
-     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist"})
      */
     private $laptop;
 
     /**
-     * @ORM\OneToOne(targetEntity=Monitor::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Monitor::class, cascade={"persist"})
      */
     private $monitor;
 
     /**
-     * @ORM\OneToOne(targetEntity=Videoprojector::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Videoprojector::class, cascade={"persist"})
      */
     private $videoprojector;
 
     /**
-     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist"})
      */
     private $mouse;
 
     /**
-     * @ORM\OneToOne(targetEntity=Keyboard::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Keyboard::class, cascade={"persist"})
      */
     private $keyboard;
 

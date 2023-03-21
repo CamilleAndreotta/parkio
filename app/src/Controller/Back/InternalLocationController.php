@@ -25,7 +25,12 @@ use App\Services\ChangeMaterialStatus\LaptopStatus;
 use App\Services\ChangeMaterialStatus\MonitorStatus;
 use App\Services\ChangeMaterialStatus\MouseStatus;
 use App\Services\ChangeMaterialStatus\VideoprojectorStatus;
-
+use App\Services\ChangeMaterialStatusAvailableDelete\ComputerStatusDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\KeyboardStatusDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\LaptopStatusDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\MonitorStatusDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\MouseStatusDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\VideoprojectorStatusDelete;
 use App\Services\KeepMaterialInLocation\KeepComputerStatus;
 use App\Services\KeepMaterialInLocation\KeepKeyboardStatus;
 use App\Services\KeepMaterialInLocation\KeepLaptopStatus;
@@ -61,6 +66,13 @@ class InternalLocationController extends AbstractController
     private $keepMouseStatus;
     private $keepVideoprojectorStatus;
 
+    private $computerStatusDelete;
+    private $keyboardStatusDelete;
+    private $laptopStatusDelete;
+    private $monitorStatusDelete;
+    private $mouseStatusDelete;
+    private $videoprojectorStatusDelete;
+
     private $em; 
 
 
@@ -88,6 +100,13 @@ class InternalLocationController extends AbstractController
         KeepMouseStatus $keepMouseStatus,
         KeepVideoprojectorStatus $keepVideoprojectorStatus,
 
+        ComputerStatusDelete $computerStatusDelete,
+        LaptopStatusDelete $laptopStatusDelete,
+        MonitorStatusDelete $monitorStatusDelete,
+        VideoprojectorStatusDelete $videoprojectorStatusDelete,
+        MouseStatusDelete $mouseStatusDelete,
+        KeyboardStatusDelete $keyboardStatusDelete,
+
         EntityManagerInterface $em 
         
         ){
@@ -112,7 +131,14 @@ class InternalLocationController extends AbstractController
         $this->keepLaptopStatus = $keepLaptopStatus;
         $this->keepMonitorStatus = $keepMonitorStatus; 
         $this->keepMouseStatus = $keepMouseStatus; 
-        $this->keepVideoprojectorStatus = $keepVideoprojectorStatus; 
+        $this->keepVideoprojectorStatus = $keepVideoprojectorStatus;
+        
+        $this->computerStatusDelete = $computerStatusDelete; 
+        $this->keyboardStatusDelete = $keyboardStatusDelete;
+        $this->laptopStatusDelete = $laptopStatusDelete;
+        $this->monitorStatusDelete = $monitorStatusDelete;
+        $this->mouseStatusDelete = $mouseStatusDelete; 
+        $this->videoprojectorStatusDelete =$videoprojectorStatusDelete;
 
         $this->em = $em; 
 
@@ -273,6 +299,34 @@ class InternalLocationController extends AbstractController
     public function delete(Request $request, InternalLocation $internalLocation, InternalLocationRepository $internalLocationRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$internalLocation->getId(), $request->request->get('_token'))) {
+
+            $id = $internalLocation->getId();
+
+            if($id !== null){
+                $this->computerStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->computerRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->laptopStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->laptopRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->monitorStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->monitorRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->videoprojectorStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->videoprojectorRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->keyboardStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->mouseStatusDelete->updateStatus($id, $this->internalLocationRepository, $this->mouseRepository, $this->em);
+            }
+            
+
             $internalLocationRepository->remove($internalLocation, true);
         }
 

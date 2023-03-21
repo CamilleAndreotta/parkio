@@ -116,7 +116,7 @@ class ExternalLocationController extends AbstractController
      * @Route("/{id}", name="app_back_external_location_show", methods={"GET"})
      */
     public function show(ExternalLocation $externalLocation): Response
-    {
+    {   
         return $this->render('back/external_location/show.html.twig', [
             'external_location' => $externalLocation,
         ]);

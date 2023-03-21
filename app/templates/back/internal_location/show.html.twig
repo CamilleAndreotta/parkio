@@ -33,15 +33,22 @@
         </tbody>
     </table>
 
-    <div class="show__container-btn">
-        <a class="btn-list" href="{{ path('app_back_internal_location_index') }}">back to list</a>
-
-        <a class="btn-update" href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
-
-        {{ include('back/internal_location/_delete_form.html.twig') }}
     </div>
 
+    <div class="edit__container-form">
+        {{ include('components/materialListShowInternal.html.twig') }}
     </div>
-    
+
+    <div class="edit__container-form">
+        <div class="show__container-btn">
+            <a class="btn-list" href="{{ path('app_back_internal_location_index') }}">back to list</a>
+
+            <a class="btn-update" href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+
+            {{ include('back/internal_location/_delete_form.html.twig') }}
+        </div>
+    </div>
+
 </div>
+
 {% endblock %}

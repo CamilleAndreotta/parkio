@@ -55,12 +55,12 @@ class ExternalLocation
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Laptop::class, cascade={"persist"})
      */
     private $laptop;
 
     /**
-     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Mouse::class, cascade={"persist"})
      */
     private $mouse;
 

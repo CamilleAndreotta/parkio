@@ -195,6 +195,11 @@ header{
     margin-bottom: 0.5rem;
 }
 
+.btn-update:hover{
+    background-color:#283747;
+    color:#48C9B0;
+}
+
 .btn-update-save{
     display: flex;
     width: 120px;
@@ -209,7 +214,7 @@ header{
     margin-bottom: 0.5rem;
 }
 
-.btn-update:hover{
+.btn-update-save:hover{
     background-color:#283747;
     color:#48C9B0;
 }
