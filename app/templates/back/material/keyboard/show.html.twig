@@ -3,7 +3,13 @@
 {% block title %}Keyboard{% endblock %}
 
 {% block body %}
-    <h1>Keyboard</h1>
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Clavier</h1>
+    </div>
+
+    <div class="show__container-table">
 
     <table class="table">
         <tbody>
@@ -16,19 +22,23 @@
                 <td>{{ keyboard.model }}</td>
             </tr>
             <tr>
-                <th>Affectation</th>
-                <td>{{ keyboard.affectation }}</td>
-            </tr>
-            <tr>
                 <th>Status</th>
                 <td>{{ keyboard.status }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_keyboard_index') }}">back to list</a>
+    <div class="show__container-btn">
 
-    <a href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">edit</a>
+        <a class="btn-list" href="{{ path('app_back_material_keyboard_index') }}">back to list</a>
 
-    {{ include('back/material/keyboard/_delete_form.html.twig') }}
+        <a class="btn-update" href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">edit</a>
+
+        {{ include('back/material/keyboard/_delete_form.html.twig') }}
+
+    </div>
+
+    </div>
+
+</div>
 {% endblock %}

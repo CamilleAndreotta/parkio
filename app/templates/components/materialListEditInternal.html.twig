@@ -1,0 +1,92 @@
+<div class="edit__container-title">
+    <h2>Liste du matériel assigné </h2>
+</div>
+
+<div class="container__list-material">
+
+    {% if computer != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag">Ordinateur</h3>
+
+            <h4>{{ computer.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_laptop_edit', {'id': computer.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if laptop != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Ordinateur portable </h3>
+
+            <h4>{{ laptop.model }}</h4>
+
+            <a class ="btn-update"  href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if monitor != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Monitor</h3>
+
+            <h4>{{ monitor.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': monitor.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if videoprojector != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Videoprojector</h3>
+
+            <h4>{{ videoprojector.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': videoprojector.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if keyboard != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >keyboard</h3>
+
+            <h4>{{ keyboard.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': keyboard.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+
+    {% if mouse != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Souris </h3>
+
+            <h4>{{ mouse.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+        
+</div>        

@@ -1,6 +1,12 @@
 {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 
+    <div class="form-flex">
+    
+    <div class="form-width">
     {{ form_widget(form) }}
+    </div>
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-update-save">{{ button_label|default('Save') }}</button>
+
+    </div>
 {{ form_end(form) }}

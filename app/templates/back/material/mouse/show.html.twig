@@ -3,7 +3,14 @@
 {% block title %}Mouse{% endblock %}
 
 {% block body %}
-    <h1>Mouse</h1>
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Souris</h1>
+    </div>
+
+    <div class="show__container-table">
 
     <table class="table">
         <tbody>
@@ -26,9 +33,17 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_mouse_index') }}">back to list</a>
+    <div class="show__container-btn">
 
-    <a href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+        <a class="btn-list" href="{{ path('app_back_material_mouse_index') }}">back to list</a>
 
-    {{ include('back/material/mouse/_delete_form.html.twig') }}
+        <a class="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+
+        {{ include('back/material/mouse/_delete_form.html.twig') }}
+
+    </div>
+
+    </div>
+
+</div>
 {% endblock %}

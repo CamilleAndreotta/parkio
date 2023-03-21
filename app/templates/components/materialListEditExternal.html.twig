@@ -1,0 +1,35 @@
+<div class="edit__container-title">
+    <h2>Liste du matériel assigné </h2>
+</div>
+
+<div class="container__list-material">
+
+    {% if laptop != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Ordinateur portable </h3>
+
+            <h4>{{ laptop.model }}</h4>
+
+            <a class ="btn-update"  href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+
+    {% if mouse != null %}
+
+        <div class = "materialCard">
+
+            <h3 class="category__tag" >Souris </h3>
+
+            <h4>{{ mouse.model }}</h4>
+
+            <a class ="btn-update" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
+
+        </div>
+
+    {% endif %}
+        
+</div>        

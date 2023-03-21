@@ -3,7 +3,13 @@
 {% block title %}Computer{% endblock %}
 
 {% block body %}
-    <h1>Computer</h1>
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Ordinateur Fixe</h1>
+    </div>
+
+    <div class="show__container-table">
 
     <table class="table">
         <tbody>
@@ -28,19 +34,23 @@
                 <td>{{ computer.purchaseDate ? computer.purchaseDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Affectation</th>
-                <td>{{ computer.affectation }}</td>
-            </tr>
-            <tr>
                 <th>Status</th>
                 <td>{{ computer.status }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_back_material_computer_index') }}">back to list</a>
+    <div class="show__container-btn">
 
-    <a href="{{ path('app_back_material_computer_edit', {'id': computer.id}) }}">edit</a>
+        <a class="btn-list" href="{{ path('app_back_material_computer_index') }}">back to list</a>
 
-    {{ include('back/material/computer/_delete_form.html.twig') }}
+        <a class="btn-update" href="{{ path('app_back_material_computer_edit', {'id': computer.id}) }}">edit</a>
+
+        {{ include('back/material/computer/_delete_form.html.twig') }}
+
+    </div>
+
+    </div>
+
+</div>
 {% endblock %}

@@ -4,52 +4,32 @@
 
 {% block body %}
 
-    <h1>Editer un prêt à un utilisateur externe</h1>
+<div class="index__container"> 
 
-    {{ include('back/external_location/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_back_external_location_index') }}">back to list</a>
-
-
-    {{ include('back/external_location/_delete_form.html.twig') }}
-
-
-    <div>
-    
-        <h2>Liste du matériel assigné </h2>
-
-        {% if laptop != null %}
-
-        <div class = "materialCard">
-
-            <h3 class="category__tag" >Ordinateur portable </h3>
-
-            <h4>{{ laptop.model }}</h4>
-
-            <a href="{{ path('app_back_material_laptop_edit', {'id': laptop.id}) }}">edit</a>
-
-        </div>
-
-        {% endif %}
-
-
-        {% if mouse != null %}
-
-        <div class = "materialCard">
-
-            <h3 class="category__tag" >Souris </h3>
-
-            <h4>{{ mouse.model }}</h4>
-
-            <a href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">edit</a>
-
-        </div>
-
-        {% endif %}
-
- 
+    <div class="index__container-title">
+        <h1>Editer un prêt à un utilisateur externe</h1>
     </div>
 
+    <div class="edit__container-form">
+        {{ include('back/external_location/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
 
+    <div class="edit__container-form">
+        {{ include('components/materialListEditExternal.html.twig') }}
+    </div>
+
+    <div class="edit__container-form">
+
+        <div class="show__container-btn">
+
+            <a class="btn-list" href="{{ path('app_back_external_location_index') }}">back to list</a>
+
+            {{ include('back/external_location/_delete_form.html.twig') }}
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}
