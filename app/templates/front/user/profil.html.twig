@@ -4,4 +4,118 @@
 
 {% block body %}
 
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Utilisateur interne</h1>
+    </div>
+
+    <div class="show__container-table">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>InternalUser</th>
+                <td>{{ user.internalUser }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="index__container-table">
+
+    <div class="edit__container-title">
+        <h2>Mon matériel</h2>
+    </div>
+
+    <div class="add__btn-container">
+
+        <a class="index__btn-add" href="{{ path('app_front_internal_location_new') }}">Demander un matériel</a>
+
+    </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mobile__display-none">Id</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th class="mobile__display-none">Informations</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internal_location in internal_locations %}
+
+        {% if internal_location.accepted == "Oui" %}
+            <tr>
+                <td class="mobile__display-none">{{ internal_location.id }}</td>
+                <td>{{ internal_location.date_start ? internal_location.date_start|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.date_end ? internal_location.date_end|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.information }}</td>
+                <td>
+                    <a class="index__btn-show" href="{{ path('app_front_internal_location_show', {'id': internal_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_front_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">Aucuns tickets trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+     <div class="index__container-table">
+
+    <div class="edit__container-title">
+        <h2>Mes demandes en cours de traitements</h2>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mobile__display-none">Id</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th class="mobile__display-none">Informations</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internal_location in internal_locations %}
+
+        {% if internal_location.accepted == "Non" %}
+            <tr>
+                <td class="mobile__display-none">{{ internal_location.id }}</td>
+                <td>{{ internal_location.date_start ? internal_location.date_start|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.date_end ? internal_location.date_end|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.information }}</td>
+                <td>
+                    <a class="index__btn-show" href="{{ path('app_front_internal_location_show', {'id': internal_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_front_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">Aucuns tickets trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+</div> 
+
 {% endblock %}

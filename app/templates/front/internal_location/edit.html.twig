@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit InternalLocation{% endblock %}
+
+{% block body %}
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Editer un prêt à un utilisateur interne</h1>
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('back/internal_location/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+    <div class="edit__container-form">
+
+        <div class="show__container-btn">
+            <a class="btn-list" href="{{ path('user_information') }}">back to list</a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

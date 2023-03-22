@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InternalLocation{% endblock %}
+
+{% block body %}
+
+<div class="index__container"> 
+    
+     <div class="index__container-title">
+        <h1>Ticket de prêt interne</h1>
+    </div>
+
+    <div class="show__container-table">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ internal_location.id }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ internal_location.dateStart ? internal_location.dateStart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ internal_location.dateEnd ? internal_location.dateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Information</th>
+                <td>{{ internal_location.information }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('components/materialListShowInternal.html.twig') }}
+    </div>
+
+    <div class="edit__container-form">
+        <div class="show_user__container-btn">
+            <a class="btn-list" href="{{ path('user_information') }}">back to list</a>
+            <a class="btn-update" href="{{ path('app_front_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

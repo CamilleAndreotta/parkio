@@ -69,6 +69,11 @@ class InternalLocation
      */
     private $keyboard;
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $accepted;
+
     
     public function getId(): ?int
     {
@@ -191,6 +196,18 @@ class InternalLocation
     public function setKeyboard(?Keyboard $keyboard): self
     {
         $this->keyboard = $keyboard;
+
+        return $this;
+    }
+
+    public function getAccepted(): ?string
+    {
+        return $this->accepted;
+    }
+
+    public function setAccepted(?string $accepted): self
+    {
+        $this->accepted = $accepted;
 
         return $this;
     }

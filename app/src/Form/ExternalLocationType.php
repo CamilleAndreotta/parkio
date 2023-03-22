@@ -10,6 +10,7 @@ use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -87,6 +88,16 @@ class ExternalLocationType extends AbstractType
                 },
                 'multiple' => false,
                 'required' => false
+            ])
+            ->add('accepted', ChoiceType::class, [
+                'label' => 'Demande traitée',
+                'choices' => [
+                    'Oui' => 'Oui',
+                    'Non' => 'Non',
+                ],
+                'multiple' => false, 
+                'expanded' => true, 
+                'required' => true
             ])
             
         ;

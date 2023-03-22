@@ -219,6 +219,13 @@ header{
     color:#48C9B0;
 }
 
+.show_user__container-btn{
+    display: flex;
+    width: 50%;
+    margin:auto;
+    justify-content: space-evenly;
+}
+
 
 /* End universal element CSS */
 /* Index CSS */

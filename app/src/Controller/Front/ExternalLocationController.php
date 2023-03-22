@@ -16,16 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class ExternalLocationController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_front_external_location_index", methods={"GET"})
-     */
-    public function index(ExternalLocationRepository $externalLocationRepository): Response
-    {
-        return $this->render('front/external_location/index.html.twig', [
-            'external_locations' => $externalLocationRepository->findAll(),
-        ]);
-    }
-
+    
     /**
      * @Route("/new", name="app_front_external_location_new", methods={"GET", "POST"})
      */
@@ -37,8 +28,11 @@ class ExternalLocationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $externalLocationRepository->add($externalLocation, true);
+
             $externalLocation->setUser($user);
+            $externalLocation->setAccepted('Non');
+            $externalLocationRepository->add($externalLocation, true);
+            
 
             return $this->redirectToRoute('app_front_external_location_index', [], Response::HTTP_SEE_OTHER);
         }

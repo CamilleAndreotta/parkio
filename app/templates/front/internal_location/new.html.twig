@@ -1,27 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editer un prêt{% endblock %}
+{% block title %}New InternalLocation{% endblock %}
 
 {% block body %}
 
 <div class="index__container"> 
 
     <div class="index__container-title">
-        <h1>Editer un prêt à un utilisateur externe</h1>
+        <h1>Créer un ticket de location interne</h1>
     </div>
 
     <div class="edit__container-form">
-        {{ include('front/external_location/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('back/internal_location/_form.html.twig') }}
     </div>
 
     <div class="edit__container-form">
 
         <div class="new__container-btn">
-            <a class="btn-list" href="{{ path('user_external_location') }}">back to list</a>
+            <a class="btn-list" href="{{ path('user_information') }}">back to list</a>
         </div>
-
+        
     </div>
 
 </div>
-
 {% endblock %}

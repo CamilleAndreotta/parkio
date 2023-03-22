@@ -15,9 +15,16 @@ class UserController extends AbstractController
      *
      * @return Response
      */
-    public function profil():Response
+    public function profil(UserInterface $user, UserRepository $userRepository):Response
     {   
-        return $this->render('front/user/profil.html.twig');
+        $id= $user->getId();
+
+        $internalLocation = $userRepository->findInternalLocationWitdhUserId($id);
+    
+        return $this->render('front/user/profil.html.twig',[
+            'user' =>$user,
+            'internal_locations' => $internalLocation
+        ]);
     }
 
     /**
@@ -30,12 +37,10 @@ class UserController extends AbstractController
 
         $id= $user->getId();
 
-        $internalLocation = $userRepository->findInternalLocationWitdhUserId($id);
         $externalLocation = $userRepository->findExternalLocationWitdhUserId($id);
 
         return $this->render('front/user/material.html.twig',[
-            'internal_location' => $internalLocation,
-            'external_location' => $externalLocation,
+            'external_locations' => $externalLocation,
         ]);
     }
 

@@ -64,6 +64,11 @@ class ExternalLocation
      */
     private $mouse;
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $accepted;
+
 
     public function getId(): ?int
     {
@@ -174,6 +179,18 @@ class ExternalLocation
     public function setMouse(?Mouse $mouse): self
     {
         $this->mouse = $mouse;
+
+        return $this;
+    }
+
+    public function getAccepted(): ?string
+    {
+        return $this->accepted;
+    }
+
+    public function setAccepted(?string $accepted): self
+    {
+        $this->accepted = $accepted;
 
         return $this;
     }
