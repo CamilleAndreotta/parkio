@@ -342,6 +342,15 @@ table{
 }
 
 /* End CSS Show*/
+/* CSS New */
+.new__container-btn{
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+/* End CSS New*/
 /* CSS Edit */
 
 .edit__container-form{

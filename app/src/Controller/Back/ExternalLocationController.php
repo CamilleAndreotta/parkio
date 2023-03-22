@@ -17,7 +17,10 @@ use App\Repository\MouseRepository;
 
 use App\Services\ChangeMaterialStatus\LaptopStatusExternal;
 use App\Services\ChangeMaterialStatus\MouseStatusExternal;
-
+use App\Services\ChangeMaterialStatusAvailableDelete\LaptopStatusExternalDelete;
+use App\Services\ChangeMaterialStatusAvailableDelete\MouseStatusExternalDelete;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\LaptopStatusExternalAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\MouseStatusExternalAdd;
 use App\Services\KeepMaterialInLocation\KeepLaptopStatusExternal;
 use App\Services\KeepMaterialInLocation\KeepMouseStatusExternal;
 
@@ -34,8 +37,14 @@ class ExternalLocationController extends AbstractController
     private $laptopStatusExternal;
     private $mouseStatusExternal;
 
+    private $laptopStatusExternalAdd;
+    private $mouseStatusExternalAdd; 
+
     private $keepLaptopStatusExternal;
     private $keepMouseStatusExternal;
+
+    private $laptopStatusExternalDelete;
+    private $mouseStatusExternalDelete;
 
     private $externalLocationRepository;
 
@@ -48,6 +57,12 @@ class ExternalLocationController extends AbstractController
 
         LaptopStatusExternal $laptopStatusExternal,
         MouseStatusExternal $mouseStatusExternal,
+
+        LaptopStatusExternalAdd $laptopStatusExternalAdd,
+        MouseStatusExternalAdd $mouseStatusExternalAdd,
+
+        LaptopStatusExternalDelete $laptopStatusExternalDelete,
+        MouseStatusExternalDelete $mouseStatusExternalDelete,
 
         KeepLaptopStatusExternal $keepLaptopStatusExternal,
         KeepMouseStatusExternal $keepMouseStatusExternal,
@@ -63,6 +78,12 @@ class ExternalLocationController extends AbstractController
 
         $this->laptopStatusExternal = $laptopStatusExternal;
         $this->mouseStatusExternal = $mouseStatusExternal; 
+
+        $this->laptopStatusExternalAdd = $laptopStatusExternalAdd;
+        $this->mouseStatusExternalAdd = $mouseStatusExternalAdd; 
+
+        $this->laptopStatusExternalDelete = $laptopStatusExternalDelete;
+        $this->mouseStatusExternalDelete = $mouseStatusExternalDelete; 
 
         $this->keepLaptopStatusExternal = $keepLaptopStatusExternal;
         $this->keepMouseStatusExternal = $keepMouseStatusExternal; 
@@ -97,9 +118,13 @@ class ExternalLocationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->laptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+            if ($form->getData()->getLaptop() !== null) {
+                $this->laptopStatusExternalAdd->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+            }
 
-            $this->mouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+            if ($form->getData()->getMouse() !== null) {
+                $this->mouseStatusExternalAdd->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+            }
 
             $externalLocationRepository->add($externalLocation, true);
 
@@ -136,23 +161,15 @@ class ExternalLocationController extends AbstractController
 
 
             if ($form->getData()->getLaptop() !== null) {
-
                 $this->laptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
-
             } else {
-
                 $this->keepLaptopStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->laptopRepository, $this->em);
-
             }
 
             if ($form->getData()->getMouse() !== null) {
-
                 $this->mouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
-
             } else {
-
                 $this->keepMouseStatusExternal->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
-
             }
 
 
@@ -175,6 +192,18 @@ class ExternalLocationController extends AbstractController
     public function delete(Request $request, ExternalLocation $externalLocation, ExternalLocationRepository $externalLocationRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$externalLocation->getId(), $request->request->get('_token'))) {
+
+            $id = $externalLocation->getId();
+
+            if($id != null){
+                $this->laptopStatusExternalDelete->updateStatus($id, $this->externalLocationRepository, $this->laptopRepository, $this->em);
+            }
+
+            if($id != null){
+                $this->mouseStatusExternalDelete->updateStatus($id, $this->externalLocationRepository, $this->mouseRepository, $this->em);
+            }
+            
+
             $externalLocationRepository->remove($externalLocation, true);
         }
 

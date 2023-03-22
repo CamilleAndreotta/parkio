@@ -3,9 +3,24 @@
 {% block title %}New Laptop{% endblock %}
 
 {% block body %}
-    <h1>Create new Laptop</h1>
 
-    {{ include('back/material/laptop/_form.html.twig') }}
+<div class="index__container"> 
 
-    <a href="{{ path('app_back_material_laptop_index') }}">back to list</a>
+    <div class="index__container-title">
+        <h1>Ajouter un portable</h1>
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('back/material/laptop/_form.html.twig') }}
+    </div>
+
+    <div class="edit__container-form">
+
+        <div class="new__container-btn">
+            <a class="btn-list" href="{{ path('app_back_material_laptop_index') }}">back to list</a>
+        </div>
+
+    </div>
+
+</div>
 {% endblock %}

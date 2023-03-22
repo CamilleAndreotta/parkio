@@ -31,6 +31,12 @@ use App\Services\ChangeMaterialStatusAvailableDelete\LaptopStatusDelete;
 use App\Services\ChangeMaterialStatusAvailableDelete\MonitorStatusDelete;
 use App\Services\ChangeMaterialStatusAvailableDelete\MouseStatusDelete;
 use App\Services\ChangeMaterialStatusAvailableDelete\VideoprojectorStatusDelete;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\ComputerStatusAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\KeyboardStatusAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\LaptopStatusAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\MonitorStatusAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\MouseStatusAdd;
+use App\Services\ChangeMaterialStatusNotAvailableAdd\VideoprojectorStatusAdd;
 use App\Services\KeepMaterialInLocation\KeepComputerStatus;
 use App\Services\KeepMaterialInLocation\KeepKeyboardStatus;
 use App\Services\KeepMaterialInLocation\KeepLaptopStatus;
@@ -51,6 +57,13 @@ class InternalLocationController extends AbstractController
     private $mouseRepository;
     private $keyboardRepository;
     private $internalLocationRepository;
+
+    private $computerStatusAdd;
+    private $keyboardStatusAdd;
+    private $laptopStatusAdd;
+    private $monitorStatusAdd;
+    private $mouseStatusAdd;
+    private $videoprojectorStatusAdd;
 
     private $computerStatus;
     private $keyboardStatus;
@@ -93,6 +106,13 @@ class InternalLocationController extends AbstractController
         MouseStatus $mouseStatus,
         VideoprojectorStatus $videoprojectorStatus,
 
+        ComputerStatusAdd $computerStatusAdd,
+        KeyboardStatusAdd $keyboardStatusAdd,
+        LaptopStatusAdd $laptopStatusAdd,
+        MonitorStatusAdd $monitorStatusAdd, 
+        MouseStatusAdd $mouseStatusAdd,
+        VideoprojectorStatusAdd $videoprojectorStatusAdd,
+
         KeepComputerStatus $keepComputerStatus,
         KeepKeyboardStatus $keepKeyboardStatus,
         KeepLaptopStatus $keepLaptopStatus,
@@ -118,6 +138,13 @@ class InternalLocationController extends AbstractController
         $this->videoprojectorRepository = $videoprojectorRepository; 
         $this->keyboardRepository = $keyboardRepository;
         $this->internalLocationRepository = $internalLocationRepository;
+
+        $this->computerStatusAdd = $computerStatusAdd; 
+        $this->keyboardStatusAdd = $keyboardStatusAdd;
+        $this->laptopStatusAdd = $laptopStatusAdd;
+        $this->monitorStatusAdd = $monitorStatusAdd;
+        $this->mouseStatusAdd = $mouseStatusAdd; 
+        $this->videoprojectorStatusAdd =$videoprojectorStatusAdd;
 
         $this->computerStatus = $computerStatus; 
         $this->keyboardStatus = $keyboardStatus;
@@ -167,17 +194,24 @@ class InternalLocationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->computerStatus->updateStatus($form, $this->internalLocationRepository, $this->computerRepository, $this->em);
-        
-            $this->laptopStatus->updateStatus($form, $this->internalLocationRepository, $this->laptopRepository, $this->em);
-
-            $this->monitorStatus->updateStatus($form, $this->internalLocationRepository, $this->monitorRepository, $this->em);
-
-            $this->videoprojectorStatus->updateStatus($form, $this->internalLocationRepository, $this->videoprojectorRepository, $this->em);
-
-            $this->mouseStatus->updateStatus($form, $this->internalLocationRepository, $this->mouseRepository, $this->em);
-
-            $this->keyboardStatus->updateStatus($form, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
+            if ($form->getData()->getComputer() !== null) {
+                $this->computerStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->computerRepository, $this->em);
+            }
+            if ($form->getData()->getLaptop() !== null) {
+                $this->laptopStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->laptopRepository, $this->em);
+            }
+            if ($form->getData()->getMonitor() !== null) {
+                $this->monitorStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->monitorRepository, $this->em);
+            }
+            if ($form->getData()->getVideoprojector() !== null) {
+                $this->videoprojectorStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->videoprojectorRepository, $this->em);
+            }
+            if ($form->getData()->getMouse() !== null) {
+                $this->mouseStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->mouseRepository, $this->em);
+            }
+            if ($form->getData()->getKeyboard() !== null) {
+                $this->keyboardStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
+            }
 
             $internalLocationRepository->add($internalLocation, true);
 
@@ -214,63 +248,39 @@ class InternalLocationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if($form->getData()->getComputer() !== null ){
-
                 $this->computerStatus->updateStatus($form, $this->internalLocationRepository, $this->computerRepository, $this->em);
-
             } else {
-
                 $this->keepComputerStatus->updateStatus($form, $this->internalLocationRepository, $this->computerRepository, $this->em);
-
             }
 
             if ($form->getData()->getLaptop() !== null) {
-
                 $this->laptopStatus->updateStatus($form, $this->internalLocationRepository, $this->laptopRepository, $this->em);
-
             } else {
-
                 $this->keepLaptopStatus->updateStatus($form, $this->internalLocationRepository, $this->laptopRepository, $this->em);
-
             }
 
             if ($form->getData()->getMonitor() !== null) {
-
                 $this->monitorStatus->updateStatus($form, $this->internalLocationRepository, $this->monitorRepository, $this->em);
-
             } else {
-
                 $this->keepMonitorStatus->updateStatus($form, $this->internalLocationRepository, $this->monitorRepository, $this->em);
-
             }
             
             if ($form->getData()->getVideoprojector() !== null) {
-
                 $this->videoprojectorStatus->updateStatus($form, $this->internalLocationRepository, $this->videoprojectorRepository, $this->em);
-
             } else {
-
                 $this->keepVideoprojectorStatus->updateStatus($form, $this->internalLocationRepository, $this->videoprojectorRepository, $this->em);
-
             }
 
             if ($form->getData()->getMouse() !== null) {
-
                 $this->mouseStatus->updateStatus($form, $this->internalLocationRepository, $this->mouseRepository, $this->em);
-
             } else {
-
                 $this->keepMouseStatus->updateStatus($form, $this->internalLocationRepository, $this->mouseRepository, $this->em);
-
             }
 
             if ($form->getData()->getKeyboard() !== null) {
-
                 $this->keyboardStatus->updateStatus($form, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
-
             } else {
-
                 $this->keepKeyboardStatus->updateStatus($form, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
-
             }
 
             $internalLocationRepository->add($internalLocation, true);
