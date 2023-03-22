@@ -80,4 +80,41 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+      public function findExternalLocationWitdhUserId($id){
+        
+        $sql = "
+        SELECT * FROM external_location
+        INNER JOIN user ON external_location.user_id = user.id
+        WHERE user_id = $id
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchAllAssociative();
+
+      }
+
+      public function findInternalLocationWitdhUserId($id){
+        
+        $sql = "
+        SELECT * FROM internal_location
+        INNER JOIN user ON internal_location.user_id = user.id
+        WHERE user_id = $id
+        ";
+
+        $dbal = $this->getEntityManager()->getConnection();
+        $statement = $dbal->prepare($sql);
+        $result = $statement->executeQuery();
+        
+        return $result->fetchAllAssociative();
+
+      }
+
+
+
+
 }

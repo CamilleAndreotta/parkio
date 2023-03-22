@@ -14,7 +14,8 @@ class MainController extends AbstractController
      * @return Response
      */
     public function homePage(): Response
-    {
+    {   
+        
         return $this->render('front/main/parkio.html.twig');
     }
 
