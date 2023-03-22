@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ExternalLocation{% endblock %}
+
+{% block body %}
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Ticket de prêt externe</h1>
+    </div>
+
+    <div class="show__container-table">
+    
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ external_location.id }}</td>
+            </tr>
+            <tr>
+                <th>ExternalUser</th>
+                <td>{{ external_location.externalUser }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ external_location.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ external_location.phone }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ external_location.message }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ external_location.dateEnd ? external_location.dateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('components/materialListShowExternal.html.twig') }}
+    </div>
+
+    <div class="edit__container-form">
+        <div class="show__container-btn">
+
+            <a class="btn-list" href="{{ path('app_front_external_location_index') }}">Liste</a>
+
+            <a class="btn-update" href="{{ path('app_front_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
+        
+        </div>
+    </div>
+
+</div> 
+
+{% endblock %}

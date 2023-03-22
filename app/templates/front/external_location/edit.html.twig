@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un prêt{% endblock %}
+
+{% block body %}
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Editer un prêt à un utilisateur externe</h1>
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('front/external_location/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+    <div class="edit__container-form">
+
+        <div class="new__container-btn">
+            <a class="btn-list" href="{{ path('app_front_external_location_index') }}">back to list</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

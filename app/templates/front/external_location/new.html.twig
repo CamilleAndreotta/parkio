@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ExternalLocation{% endblock %}
+
+{% block body %}
+
+<div class="index__container"> 
+
+    <div class="index__container-title">
+        <h1>Créer un ticket de location externe</h1>
+    </div>
+
+    <div class="edit__container-form">
+        {{ include('front/external_location/_form.html.twig') }}
+    </div>
+    
+    <div class="edit__container-form">
+
+        <div class="new__container-btn">
+            <a class="btn-list" href="{{ path('app_front_external_location_index') }}">back to list</a>
+        </div>
+
+    </div>
+    
+</div>
+{% endblock %}
