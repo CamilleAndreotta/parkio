@@ -126,6 +126,10 @@ class ExternalLocationController extends AbstractController
                 $this->mouseStatusExternalAdd->updateStatus($form, $this->externalLocationRepository, $this->mouseRepository, $this->em);
             }
 
+            if($form->getData()->getAccepted() === null){
+                $externalLocation->setAccepted('Non');
+            }
+
             $externalLocationRepository->add($externalLocation, true);
 
             return $this->redirectToRoute('app_back_external_location_index', [], Response::HTTP_SEE_OTHER);

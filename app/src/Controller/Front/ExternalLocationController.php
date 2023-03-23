@@ -34,7 +34,7 @@ class ExternalLocationController extends AbstractController
             $externalLocationRepository->add($externalLocation, true);
             
 
-            return $this->redirectToRoute('app_front_external_location_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('user_external_location', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/external_location/new.html.twig', [
@@ -64,7 +64,7 @@ class ExternalLocationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $externalLocationRepository->add($externalLocation, true);
 
-            return $this->redirectToRoute('app_front_external_location_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('user_external_location', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('front/external_location/edit.html.twig', [

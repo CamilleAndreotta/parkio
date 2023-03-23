@@ -1,1 +1,111 @@
-/* NavBar CSS */
+/*CSS front HomePage*/
+
+.home__container-title{
+    height: 40vh;
+    background-image: url('https://images.pexels.com/photos/326508/pexels-photo-326508.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.home__container-title h1{
+    width: 90%;
+    padding: 2rem;
+    background-color: rgb(253,254,254,0.6);
+    font-weight: bold;
+}
+
+
+.home__container-content{
+    width: 90%;
+    margin: 1.5rem auto;
+    padding: 1rem;
+}
+
+.home__h2{
+    margin: 2rem 0;
+}
+
+.blue{
+    background-color: #283747;
+    color: #ffffff;
+}
+
+.box__card-flex{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: auto;
+    padding:0
+}
+
+.flex__card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #DC7633;
+    border-radius: 8px;
+    box-shadow: 1px 3px 3px #DC7633;
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+.flex__card h3{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: rgb(255,255,255,0.6);
+    
+}
+
+.flex__card p{
+    padding: 0 1rem;
+    text-align: justify;
+}
+
+.card__mobile--d-none{
+    display: none;
+}
+
+.bg__home--card-1{
+    background-image: url('https://images.pexels.com/photos/8100060/pexels-photo-8100060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg__home--card-2{
+    background-image: url('https://images.pexels.com/photos/57007/pexels-photo-57007.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg__home--card-3{
+    background-image: url('https://images.pexels.com/photos/2643596/pexels-photo-2643596.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.box__content-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.img__homepage{
+    width: 100%;
+    height: auto;
+}
+
+/*End CSS front HomePage*/
+
+

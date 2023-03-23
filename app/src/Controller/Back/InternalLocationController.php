@@ -213,6 +213,10 @@ class InternalLocationController extends AbstractController
                 $this->keyboardStatusAdd->updateStatus($form, $this->internalLocationRepository, $this->keyboardRepository, $this->em);
             }
 
+            if($form->getData()->getAccepted() === null){
+                $internalLocation->setAccepted('Non');
+            }
+
             $internalLocationRepository->add($internalLocation, true);
 
             return $this->redirectToRoute('app_back_internal_location_index', [], Response::HTTP_SEE_OTHER);

@@ -39,6 +39,7 @@ class UserController extends AbstractController
 
         $externalLocation = $userRepository->findExternalLocationWitdhUserId($id);
 
+
         return $this->render('front/user/material.html.twig',[
             'external_locations' => $externalLocation,
         ]);

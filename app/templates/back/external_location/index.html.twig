@@ -19,6 +19,10 @@
 
     <div class="index__container-table">
 
+    <div class="edit__container-title">
+        <h2>Les locations en cours</h2>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -34,6 +38,7 @@
         </thead>
         <tbody>
         {% for external_location in external_locations %}
+            {% if external_location.accepted == "Oui" %}
             <tr>
                 <td class="mobile__display-none" >{{ external_location.id }}</td>
                 <td>{{ external_location.externalUser }}</td>
@@ -47,6 +52,53 @@
                     <a class="index__btn-edit" href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
                 </td>
             </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="8">Aucuns tickets trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+    <div class="index__container-table">
+
+    <div class="edit__container-title">
+        <h2>Les demandes à traiter</h2>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mobile__display-none" >Id</th>
+                <th>Nom et prénom</th>
+                <th class="mobile__display-none" >Email</th>
+                <th class="mobile__display-none">Tel</th>
+                <th class="mobile__display-none">Message</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for external_location in external_locations %}
+            {% if external_location.accepted == "Non" %}
+            <tr>
+                <td class="mobile__display-none" >{{ external_location.id }}</td>
+                <td>{{ external_location.externalUser }}</td>
+                <td class="mobile__display-none">{{ external_location.email }}</td>
+                <td class="mobile__display-none">{{ external_location.phone }}</td>
+                <td class="mobile__display-none">{{ external_location.message }}</td>
+                <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ external_location.dateEnd ? external_location.dateEnd|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="index__btn-show" href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
+                </td>
+            </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="8">Aucuns tickets trouvés</td>

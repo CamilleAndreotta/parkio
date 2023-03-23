@@ -85,7 +85,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
       public function findExternalLocationWitdhUserId($id){
         
         $sql = "
-        SELECT external_location.id as id, external_location.date_start as date_start, external_location.date_end as date_end, external_location.message as information, external_location.accepted as accepted FROM external_location
+        SELECT external_location.external_user as user, external_location.email as email, external_location.phone as phone,external_location.id as id, external_location.date_start as date_start, external_location.date_end as date_end, external_location.message as message, external_location.accepted as accepted FROM external_location
         INNER JOIN user ON external_location.user_id = user.id
         WHERE user_id = $id
         ";

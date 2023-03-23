@@ -18,6 +18,10 @@
 
     <div class="index__container-table">
 
+    <div class="edit__container-title">
+        <h2>Les locations en cours</h2>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -31,6 +35,7 @@
         </thead>
         <tbody>
         {% for internal_location in internal_locations %}
+            {% if internal_location.accepted == "Oui" %}
             <tr>
                 <td class="mobile__display-none">{{ internal_location.id }}</td>
                 <td>{{ internal_location.user}}</td>
@@ -42,6 +47,48 @@
                     <a class="index__btn-edit" href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">Modifier</a>
                 </td>
             </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">Aucuns tickets trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    <div class="index__container-table">
+    <div class="edit__container-title">
+        <h2>Les demandes à traiter</h2>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="mobile__display-none">Id</th>
+                <th>Nom et prénom</th>
+                <th>Début</th>
+                <th class="mobile__display-none">Fin</th>
+                <th class="mobile__display-none">Informations</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for internal_location in internal_locations %}
+
+        {% if internal_location.accepted == "Non" %}
+            <tr>
+                <td class="mobile__display-none">{{ internal_location.id }}</td>
+                <td>{{ internal_location.user}}</td>
+                <td>{{ internal_location.dateStart ? internal_location.dateStart|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.dateEnd ? internal_location.dateEnd|date('Y-m-d') : '' }}</td>
+                <td class="mobile__display-none">{{ internal_location.information }}</td>
+                <td>
+                    <a class="index__btn-show" href="{{ path('app_back_internal_location_show', {'id': internal_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_back_internal_location_edit', {'id': internal_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">Aucuns tickets trouvés</td>
