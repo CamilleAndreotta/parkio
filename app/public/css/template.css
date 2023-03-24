@@ -226,6 +226,16 @@ header{
     justify-content: space-evenly;
 }
 
+.orange{
+    background-color: #DC7633;
+    color: #ffffff;
+}
+
+.blue{
+    background-color: #283747;
+    color: #ffffff;
+}
+
 
 /* End universal element CSS */
 /* Index CSS */
@@ -237,7 +247,6 @@ header{
     justify-content: center;
     align-items: center;
     padding: 1.5rem 1rem; 
-    background-color: #DC7633;
 }
 
 .index__container-title h1{
@@ -384,7 +393,6 @@ table{
     justify-content: center;
     align-items: center;
     padding: 1.5rem 1rem; 
-    background-color: #DC7633;
     margin-bottom: 1rem;
 }
 

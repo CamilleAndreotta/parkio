@@ -26,11 +26,6 @@
     margin: 2rem 0;
 }
 
-.blue{
-    background-color: #283747;
-    color: #ffffff;
-}
-
 .box__card-flex{
     display: flex;
     width: 100%;
@@ -67,8 +62,8 @@
 }
 
 .flex__card p{
-    padding: 0 1rem;
-    text-align: justify;
+    padding: 1rem;
+    text-align: center;
 }
 
 .card__mobile--d-none{
@@ -106,6 +101,112 @@
     height: auto;
 }
 
+.collaborative__tool{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.link__mobile--display-none{
+    display: none;
+}
+
 /*End CSS front HomePage*/
+
+@media (min-width:425px){
+    .box__content-flex{
+        flex-direction: row;
+    }
+
+    .box__content-flex>.collaborative__tool{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        padding: 2rem;
+        text-align: justify;
+        
+    }
+
+    .box__content-flex>.img__homepage{
+        width: 30%;
+    }
+
+}
+
+
+@media (min-width:768px){
+
+    .box__card-flex{
+        justify-content: space-between;
+    }
+
+    .flex__card{
+        width: 30%;
+        margin: 0 0.5rem;
+        height: auto;
+        justify-content: initial;
+    }
+
+    .flex__card h3{
+        width: 100%;
+        height: 150px;
+        margin:0;
+        font-weight: bold;
+        
+    }
+
+    .card__mobile--d-none{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        height: 150px ;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    .link__content-download{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 300px;
+        background-color: #283747;
+        padding: 2rem;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    
+    .link__content-download h2{
+        font-size: 1.5rem;
+        color: #ffffff;
+        text-align: center;
+        margin: 1rem;
+    }
+    
+    .link__content-download p{
+        color:#DC7633;
+    }
+    
+    .link__content-download a{
+        display: flex;
+        width: 200px;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        text-align: center;
+        background-color: #95A5A6;
+        text-decoration: none;
+        color: #ffffff;
+        border-radius: 4px;
+    }
+
+    .link__content-download a:hover{
+        background-color: #DC7633;
+        color: #ffffff;
+    }
+    
+    
+
+}
 
 
