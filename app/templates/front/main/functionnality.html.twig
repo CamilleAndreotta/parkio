@@ -3,5 +3,82 @@
 {% block title %}Fonctionnalité{% endblock %}
 
 {% block body %}
+<div class="index__container"> 
+    <div class="index__container-title home__container-title">
+        <h1>Les fonctionnalités de Parkio</h1>
+    </div>
 
+    <div class="home__container-content">
+
+        <div class="edit__container-title home__h2 orange">
+        <h2> Inventaire de votre parc informatique</h2>
+        </div>
+        <p>Parkio offre la possibilité de recenser les principaux types de matériels d'une structure. Dans le futur, l'application pourra évoluer en fonction des retours utilisateurs afin d'intégrer de nouveaux périphériques (station, éléments de transports, etc.).</p>
+        <p><strong>Parkio permet de recenser différents types de matériels : </strong></p>
+        <div class="material__flex-content">
+            <div class="box__material img__material-1">
+                <p>Les ordinateurs fixes</p>
+            </div>
+            <div class="box__material img__material-2">
+                <p>Les portables</p>
+            </div>
+            <div class="box__material img__material-3">
+                <p>Les videoprojecteurs</p>
+            </div>
+            <div class="box__material img__material-4">
+                <p>Les écrans</p>
+            </div>
+            <div class="box__material img__material-5">
+                <p>Les claviers</p>
+            </div>
+            <div class="box__material img__material-6">
+                <p>Les souris</p>
+            </div>
+        </div>
+
+        <div class="edit__container-title home__h2 orange">
+            <h2> Attribution et suivi de matériel</h2>
+        </div>
+
+        <div class="box__content-flex">
+
+            <div class="functionnality__tool">
+                <p>
+                    Parkio permet d'attribuer votre matériel informatique à vos collaborateurs et à leurs partenaires. Cette fonctionnalité passe par la création de tickets. Il existe deux types de tickets. L'un est lié à un collaborateur, avec la possibilité de lui attribuer différents types de matériels (ordinateur fixe, ordinateur portable, écran, clavier, souris etc.). L'autre est destiné aux prêts pour des personnes externes à la structure (partenaires, clients, etc.). Un collaborateur, en lien avec la personne externe est affecté pour le suivi de la récupération du matériel.
+                    
+                </p>
+
+                <p>
+                    Parkio vous offre également de faire le suivi de disponibilité de vos différents matériels, pour une meilleure gestion des investissements et un meilleur taux d'utilisation de ces derniers. 
+                
+                </p>
+    
+            </div>
+    
+            <img class="img__functionnality" src="{{asset('images/localisation.jpg')}}" alt="location - prêt informatique - ordinateur - parkio - gestion informatique ">
+        
+        
+        </div>
+
+        <div class="link__content-download link__mobile--display-none">
+        
+            <h2>Parkio est une application web gratuite que vous pouvez héberger sur vos propres serveurs.</h2>
+
+            <p>Pour utiliser Parkio, téléchargez le repertoire gitHub du projet et déployez le sur votre serveur. L'application utilise un environnement Docker et a été développé sur le framework Symfony</p>
+
+            <p><strong> Téléchargez l'application en cliquant sur le lien ci-dessous : </strong></p>
+
+            <a href="">Lien de téléchargement</a>
+
+        </div>
+       
+
+        
+
+
+
+
+
+    </div>
+</div>
 {% endblock %}
