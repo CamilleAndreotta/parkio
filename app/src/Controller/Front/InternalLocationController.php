@@ -10,8 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
+ * @IsGranted("ROLE_USER")
  * @Route("/front/internal/location")
  */
 class InternalLocationController extends AbstractController
@@ -47,23 +49,33 @@ class InternalLocationController extends AbstractController
     /**
      * @Route("/{id}", name="app_front_internal_location_show", methods={"GET"})
      */
-    public function show(InternalLocation $internalLocation): Response
-    {
+    public function show(InternalLocation $internalLocation, UserInterface $user): Response
+    {   
+
+        $userId = $user->getId();
+
+        if($internalLocation->getUser()->getId() === $userId){
+
         return $this->render('front/internal_location/show.html.twig', [
             'internal_location' => $internalLocation,
         ]);
+
+        }else{
+            return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
+        };
     }
 
     /**
      * @Route("/{id}/edit", name="app_front_internal_location_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, InternalLocation $internalLocation, InternalLocationRepository $internalLocationRepository): Response
+    public function edit(Request $request, InternalLocation $internalLocation, InternalLocationRepository $internalLocationRepository, UserInterface $user): Response
     {   
+        $userId = $user->getId();
+
+        if($internalLocation->getUser()->getId() === $userId){
 
         $form = $this->createForm(InternalLocationFrontType::class, $internalLocation);
         $form->handleRequest($request);
-
-        $id = $form->getData()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -79,6 +91,11 @@ class InternalLocationController extends AbstractController
             'form' => $form,
 
         ]);
+
+        }else{
+            return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
+        };
+    
     }
 
 }

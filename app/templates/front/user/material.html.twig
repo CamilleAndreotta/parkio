@@ -40,8 +40,8 @@
                 <td>{{ external_location.date_start ? external_location.date_start|date('Y-m-d') : '' }}</td>
                 <td class="mobile__display-none">{{ external_location.date_end ? external_location.date_end|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a class="index__btn-show" href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
+                    <a class="index__btn-show" href="{{ path('app_front_external_location_show', {'id': external_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_front_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% endif %}
@@ -86,8 +86,8 @@
                 <td>{{ external_location.date_start ? external_location.date_start|date('Y-m-d') : '' }}</td>
                 <td class="mobile__display-none">{{ external_location.date_end ? external_location.date_end|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a class="index__btn-show" href="{{ path('app_back_external_location_show', {'id': external_location.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
+                    <a class="index__btn-show" href="{{ path('app_front_external_location_show', {'id': external_location.id}) }}">Voir</a>
+                    <a class="index__btn-edit" href="{{ path('app_front_external_location_edit', {'id': external_location.id}) }}">Modifier</a>
                 </td>
             </tr>
             {% endif %}

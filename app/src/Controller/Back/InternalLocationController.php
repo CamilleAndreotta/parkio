@@ -44,7 +44,10 @@ use App\Services\KeepMaterialInLocation\KeepMonitorStatus;
 use App\Services\KeepMaterialInLocation\KeepMouseStatus;
 use App\Services\KeepMaterialInLocation\KeepVideoprojectorStatus;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 /**
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/back/internal/location")
  */
 class InternalLocationController extends AbstractController

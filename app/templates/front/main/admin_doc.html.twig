@@ -3,5 +3,84 @@
 {% block title %}Documentation Administrateur{% endblock %}
 
 {% block body %}
+<div class="index__container"> 
 
+    <div class="index__container-title home__container-title">
+        <h1>Documentation à destination des utilisateurs</h1>
+    </div>
+
+    <div class="home__container-content">
+        <div class="edit__container-title home__h2 blue">
+            <h2>Gestion des utilisateurs</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>L'interface</h3>
+                <p>
+                    La page gestion des utilisateurs vous permets de créer, modifier et supprimer les utilisateurs internes à la structure. 
+                    <br>
+                    <br>
+                    Pour créer un nouveau utilisateur, cliquez sur le bouton "Ajouter un nouvel utilisateur". Celui-ci vous permet d'accéder au formulaire de création. 
+                    Dans ce formulaire vous allez retrouver différents champs à compléter : 
+                    <ul>
+                        <li>Nom et prénom de l'utilisateur</li>
+                        <li>Email de l'utilisateur. Ce dernier est également utilisé pour s'authentifier sur l'application au moment de la connexion</li>
+                        <li>Le Rôle de l'utilisateur. Le rôle User est le rôle avec un accès restreint. Il n'a pas accès au backoffice et ne peut assigner de matériel. Le rôle administrateur permet à l'utilisateur d'avoir un accès au backoffice et à l'affectation de matériel.</li>
+                        <li>Le mot de passe de l'utilisateur. La création de compte n'est pas ouvert au public car l'application est dédiée à un usage interne. L'administrateur est en charge de créer les comptes et de transmettre les informations de connexion à l'utilisateur. </li>
+                    </ul>
+
+                    Dans la colonne "Actions", vous avez la possibilité de voir et de modifier un utilisateur. Le bouton de suppression est accessible dans en cliquant sur le bouton voir ou modifier un utilisateur. 
+
+
+                </p>
+            </div>
+        </div>
+
+        <div class="edit__container-title home__h2 blue">
+            <h2>Gestion des prêts</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>Organisation</h3>
+                <p> 
+                Pour faciliter la gestion des prêts, ces derniers ont été séparés en fonction qu'il s'agisse de prêts pour un utilisateur interne ou externe. 
+                Le fonctionnement est identique sur les deux pages. Vous y retrouverez une liste avec les locations en cours et les locations à traiter.
+                <br>
+                <br>
+                Le fonctionnement de l'application repose sur un système de ticket, celui-ci représentant une location. Dans le formulaire de création de ticket, vous pouvez devez affecter un utilisateur interne (destinataire dans le cas d'un prêt interne ou référent dans le cas d'un prêt externe), du matériel en fonction de la demande. Le matériel est classifié en plusieurs catégories (ordinateurs fixes, portables, écrans, etc.). Il n'est possible d'affecter qu'un matériel par catégorie. Par exemple, vous ne pouvez pas affecter sur une même location deux ordinateurs portables. Si vous devez affecter un deuxième ordinateur portable à un utilisateur, il vous faudra créer un nouveau ticket. 
+                <br>
+                <br>
+                Les demandes de prêts externes effectuées par les utilisateurs se trouvent dans la page Gestion des prêts externes dans la partie "Demandes à traiter". Pour traiter la demande, cliquez sur le bouton modifier afin d'accéder au formulaire du ticket et de pouvoir affecter le matériel demandé. Ne pas oublier de passer le status en demande traitée avant de sauvegarder afin que l'utilisateur puisse la voir dans sa liste des locations en cours.
+                <br>
+                <br>
+                La liste de matériels affectée au ticket s'affiche en bas du formulaire. Pour supprimer un matériel du formulaire, cliquez sur le matériel que vous souhaitez supprimer et modifiez le status en disponible. Cette manipulation permet de le supprimer du ticket. En cas d'udpate, le matériel sélectionné remplace automatiquement l'ancien matériel affecté. 
+                </p>
+
+            </div>
+        </div>
+
+        <div class="edit__container-title home__h2 blue">
+            <h2>Gestion du matériel</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>Organisation</h3>
+                <p>
+                Pour faciliter la gestion du matériel informatique, l'application a été définie selon les différentes catégories de matériel (ordinateurs fixes, portables, écrans, vidéoprojecteurs etc.). En tant qu'administrateur, vous pouvez ajouter du matériel en accédant à la page de la catégorie. Par exemple, pour ajouter un nouvel ordinateur portable cliquez sur Portables. Vous aurez à partir de cette page accès aux boutons de créations, modifications et d'un nouveau portable. 
+                <br>
+                <br>
+                En fonction de la catégorie du matériel, il vous sera possible de l'affecter soit à un usage interne, soit à un usage externe. C'est le cas pour les souris et les ordinateurs portables. A contrario, certaines catégories de matériels ne sont pas accessibles à un usage externe. C'est le cas pour les ordinateurs fixes, les vidéoprojecteurs et les écrans par exemples. 
+
+                </p>
+            </div>
+        </div>
+
+
+
+    <div>
+
+</div>
 {% endblock %}

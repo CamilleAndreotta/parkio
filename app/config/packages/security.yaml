@@ -34,6 +34,14 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/back/(.*)/(new|edit|delete), roles: [ROLE_ADMIN] }
+          - { path: ^/back/(.*)/\d+$, roles: [ROLE_ADMIN] , methods: [POST]}
+          - { path: ^/front/(.*)/(new|edit|delete), roles: [ROLE_USER] }
+          - { path: ^/front/(.*)/\d+$, roles: [ROLE_USER] , methods: [POST]}
+
+
+    role_hierarchy:
+        ROLE_ADMIN : ROLE_USER
 
 when@test:
     security:

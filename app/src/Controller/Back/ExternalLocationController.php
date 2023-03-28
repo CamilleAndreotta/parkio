@@ -24,8 +24,11 @@ use App\Services\ChangeMaterialStatusNotAvailableAdd\MouseStatusExternalAdd;
 use App\Services\KeepMaterialInLocation\KeepLaptopStatusExternal;
 use App\Services\KeepMaterialInLocation\KeepMouseStatusExternal;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 /**
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/back/external/location")
  */
 class ExternalLocationController extends AbstractController

@@ -3,5 +3,92 @@
 {% block title %}Documentation Utilisateur{% endblock %}
 
 {% block body %}
+<div class="index__container"> 
 
+    <div class="index__container-title home__container-title">
+        <h1>Documentation à destination des utilisateurs</h1>
+    </div>
+
+    <div class="home__container-content">
+        <div class="edit__container-title home__h2 blue">
+            <h2>Mon profil</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>L'interface</h3>
+                <p>En tant qu'utilisateur, vous retrouverez sur cette page différentes informations : 
+                    <ul>
+                        <li>Vos informations de votre profil</li>
+                        <li>La liste de ticket de matériels qui vous ont été attribués par un administrateur</li>
+                        <li>La liste de vos demandes de matériels en cours de traitement</li>
+                    </ul>
+
+                    <h4>Consulter le matériel attribué dans un ticket de mise à disposition</h4>
+                    <p>Pour consulter plus en détail la liste de matériel qui vous été allouée, cliquez sur "Voir" dans la colonne Actions.</p>
+
+                    <h4>Faire une demande de location</h4>
+                    <p>En cas de besoin ponctuel de matériel, vous pouvez créer une demande de location en cliquant sur le bouton "Demander un matériel". Dans le formulaire vous retrouverez différents champs : 
+                        <ul>
+                            <li>La date de début : Indiquez la date pour laquelle vous avez besoin du matériel</li>
+                            <li>La date de fin : Indiquez la date de restitution du matériel. </li>
+                            <li>Informations complémentaires : Indiquer le type de matériel que vous souhaitez louer (par exemple vidéoprojecteur) </li>
+                        </ul>
+                     Dans le champs Informations complémentaires vous pouvez indiquer le matériel dont vous avez besoin afin que l'administrateur puisse traiter votre demande. 
+                    </p> 
+
+                    <h4>Modifier une demande de location</h4>
+                    <p>Pour modifier une demande de location, cliquer sur le bouton modifier dans la colonne Actions du tableau Mes demandes en cours de traitements. Vous pourrez ainsi modifier la partie information en indiquant le matériel que vous souhaitez.</p> 
+
+                    <h4>Supprimer une demande de location</h4>
+                    <p>En tant qu'utilisateur, vous n'avez pas la possibilité de supprimer une demande de location. En cas d'erreur, indiquez dans le champs Information que vous souhaitez supprimer le ticket. Cela permettra à l'administrateur d'en être informé et de pouvoir la supprimer.</p>
+                </p>
+            </div>
+        </div>
+
+        <div class="edit__container-title home__h2 blue">
+            <h2>Mes demandes de prêts</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>L'interface</h3>
+                <p>En tant qu'utilisateur, vous retrouverez sur cette page : 
+                    <ul>
+                        <li>La liste de locations en cours à des personnes externes pour lesquelles vous êtes référents</li>
+                        <li>La liste de vos demandes de matériels pour des personnes exterieures en cours de traitement.</li>
+                    </ul>
+                    <p>Au moment de la création d'une demande de location pour une personne externe, en tant que demandeur vous êtes également le référent. Cela vous permet notamment de faire le suivi de l'attribution et de la restitution du matériel. Seul les demandes que vous avez faites pour une personne extérieures sont ici répertoriées.</p>
+
+                </p>
+            </div>
+        </div>
+
+        <div class="edit__container-title home__h2 blue">
+            <h2>Faire une demande de prêt</h2>
+        </div>
+
+        <div>
+            <div>
+                <h3>L'interface</h3>
+                <p>L'onglet faire une demande permet de créer un ticket de location pour une personne externe à la structure. Différents champs sont à compléter : 
+                    <ul>
+                        <li>Nom et prénom de l'emprunteur.</li>
+                        <li>Email de l'emprunteur</li>
+                        <li>Numéro de téléphone de l'emprunteur</li>
+                        <li>Matériel souhaité. Il s'agit d'indiquer le matériel dont il a besoin pour que l'administrateur puisse traiter la demande</li>
+                        <li>Date de début de location</li>
+                        <li>Date de fin de location</li>
+                    </ul>
+                    <p>En tant que demandeur pour la location, vous êtes automatiquement le référent de la demande, ce qui vous permet de consulter le status de cette dernière dans l'onglet mes demandes de prêts.</p>
+
+                </p>
+            </div>
+        </div>
+
+
+
+    <div>
+
+</div>
 {% endblock %}

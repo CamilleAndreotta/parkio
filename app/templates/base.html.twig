@@ -58,10 +58,13 @@
                 <ul>
                     <li> <a href="{{ path('home')}}">Parkio</a> </li>
                     <li> <a href="{{ path('functionnalities')}}">Les fonctionnalités </a> </li>
+                    {% if app.user != null %}
                     <li> <span class="nav__subnav">Documentation</span> 
                         <ul>
                             <li> <a href="{{ path('user_doc')}}">Utilisateur</a> </li>
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
                             <li> <a href="{{ path('admin_doc')}}">Administrateur</a> </li>
+                            {% endif %}
                         </ul>
                     </li>
                     <li> <span class="nav__subnav">Espace Utilisateur</span>
@@ -71,6 +74,7 @@
                             <li> <a href="{{ path('app_front_external_location_new')}}">Faire une demande</a> </li>
                         </ul>
                     </li>
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
                     <li><span class="nav__subnav">Espace Administrateur</span>
                         <ul>
                             <li> <a href="{{ path('app_back_user_index')}}">Gestion des utilisteurs</a> </li>
@@ -92,6 +96,9 @@
                             </li>
                         </ul>
                     </li>
+                    {% endif %}
+                    {% endif %}
+                    
                     {% if app.user == null %}
                         <li><a href="{{ path('app_login')}}">Connexion</a></li>
                     {% else %}

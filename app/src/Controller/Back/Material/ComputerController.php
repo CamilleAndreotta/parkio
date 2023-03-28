@@ -12,12 +12,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 /**
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/back/material/computer")
  */
 class ComputerController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/", name="app_back_material_computer_index", methods={"GET"})
      */
     public function index(ComputerRepository $computerRepository): Response
