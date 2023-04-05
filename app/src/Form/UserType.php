@@ -10,7 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
@@ -22,7 +24,11 @@ class UserType extends AbstractType
                 'label' => 'Nom et Prénom l\'utilisateur',
             ])
             ->add('email', EmailType::class, [
-                'constraints' => new NotBlank(),
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir votre adresse mail'
+                    ]),
+                ],
                 'label'=> 'Email de l\'utilisateur',
                 'mapped'=> true, 
                 'required' => true,
@@ -43,14 +49,12 @@ class UserType extends AbstractType
                     new NotBlank([
                         'message'=> 'Veuillez entrer un mot de passe'
                     ]),
-                    /*new Length([
+                    new Length([
                         'min' => 12,
                         'minMessage' => 'Votre mot de passe doit contenir 12 caractères'
                     ]),
-                    new Regex([
-                        "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/",
-                        "Votre mot de passe n'est pas assez sécurisé.veuillez recommencer"
-                    ]),*/
+                    new Regex(
+                        "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/"),
                 ],
                 'mapped'=> true, 
                 'required' => true, 

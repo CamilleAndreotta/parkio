@@ -2,10 +2,27 @@
 
 .home__container-title{
     height: 40vh;
-    background-image: url('https://images.pexels.com/photos/326508/pexels-photo-326508.jpeg?auto=compress&cs=tinysrgb&w=1600');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.home__image{
+    background-image: url('../images/home.webp');
+}
+
+.function__image{
+    background-image: url('../images/manage.webp');
+}
+
+.userDoc__image{
+    background-image: url('../images/documentation.webp');
+    background-position: bottom;
+}
+
+.adminDoc__image{
+    background-image: url('../images/docadmin.webp');
+    background-position: left;
 }
 
 .home__container-title h1{
@@ -71,21 +88,21 @@
 }
 
 .bg__home--card-1{
-    background-image: url('https://images.pexels.com/photos/8100060/pexels-photo-8100060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('../images/home-case1.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .bg__home--card-2{
-    background-image: url('https://images.pexels.com/photos/57007/pexels-photo-57007.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-image: url('../images/home-case2.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .bg__home--card-3{
-    background-image: url('https://images.pexels.com/photos/2643596/pexels-photo-2643596.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('../images/home-case3.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -138,45 +155,46 @@
     padding: 1rem;
     background-color: rgb(253,254,254,0.6);
     color:#283747;
+    font-weight: bold;
 }
 
 .img__material-1{
-    background-image: url('https://images.pexels.com/photos/2399840/pexels-photo-2399840.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-image: url('../images/ordinateur.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .img__material-2{
-    background-image: url('https://images.pexels.com/photos/12883026/pexels-photo-12883026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('../images/laptop.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .img__material-3{
-    background-image: url('https://images.pexels.com/photos/6476787/pexels-photo-6476787.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-image: url('../images/videoprojecteur.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .img__material-4{
-    background-image: url('https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-image: url('../images/ecran.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .img__material-5{
-    background-image: url('https://images.pexels.com/photos/841228/pexels-photo-841228.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-image: url('../images/clavier.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .img__material-6{
-    background-image: url('https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('../images/souris.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -260,7 +278,6 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 300px;
         background-color: #283747;
         padding: 2rem;
         justify-content: center;

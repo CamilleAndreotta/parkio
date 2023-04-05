@@ -23,6 +23,10 @@ header{
     background-color: #283747;
 }
 
+img.header__logo{
+    height: 8vh;
+}
+
 .header__box{
     display: flex;
     justify-content: center;
@@ -131,6 +135,41 @@ header{
 }
 
 /* End CSS Navbar */
+
+/* CSS Footer */
+
+footer{
+    width:100%;
+    height: 15vh;
+    background-color: #283747;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+footer>ul{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: space-between;
+    align-content: space-around;
+}
+
+footer>ul>li{
+    list-style: none;
+}
+
+footer>ul>li>a{
+    color:white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer>ul>li>a:hover{
+    color:#DC7633;
+}
+
+/* End Footer CSS */
 /* CSS universal element*/
 
 .form-flex{
@@ -526,6 +565,13 @@ table{
         align-items: center;
     }
 
+    footer{
+        height: 10vh;
+    }
+
+    footer>ul{
+        flex-direction: row;
+    }
 
     .nav__side{
         flex-direction: column;

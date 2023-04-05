@@ -49,5 +49,35 @@ class MainController extends AbstractController
         return $this->render('front/main/admin_doc.html.twig');
     }
 
+    /**
+     * @Route("/mentions-legales", name="mentions", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function mentions(): Response
+    {
+        return $this->render('front/main/mentions_legales.html.twig');
+    }
+
+    /**
+     * @Route("/rgpd", name="rgpd", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function rgpd(): Response
+    {
+        return $this->render('front/main/rgpd.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function contact(): Response
+    {
+        return $this->render('front/main/contact.html.twig');
+    }
+
 
 }

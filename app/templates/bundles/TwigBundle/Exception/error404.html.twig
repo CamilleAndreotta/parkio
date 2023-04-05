@@ -1,12 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}404{% endblock %}
+
 {% block body %}
 
-    <h1>Page not found</h1>
+<div class="index__container"> 
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-    </p>
+    <div class="home__container-content">
+        <p>
+            La page demandée est introuvable. Cliquez sur le lien pour revenir à la page d'accueil :
+            <a href="{{ path('home')}}">Retour à l'accueil</a>
+        </p>
+    </div>
 
+</div>
 
 {% endblock %}

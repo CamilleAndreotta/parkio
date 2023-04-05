@@ -34,7 +34,7 @@
             
             <div class="header__box">
                 <div class="logo-box">
-                    <a href="" class="logo">logo</a>
+                    <a href="{{ path('home')}}" class="logo"><img class="header__logo" src="{{asset('images/Logo.png')}}" alt="parkio"></a>
                 </div>
                 <div class="siteName siteName--display-true">
                     <p>Parkio</p>
@@ -117,9 +117,14 @@
         </div>
     </div>
     <footer>
-    
-    
-    
+
+        <ul>
+            <li><a href="{{ path('rgpd')}}">RGPD</a></li>
+            <li><a href="{{ path('mentions')}}">Mentions Légales</a></li>
+            <li><a href="{{ path('contact')}}">Contact</a></li>
+        </ul>
+
+
     </footer>
 
     <script src="{{asset('js/nav.js')}}"></script>
