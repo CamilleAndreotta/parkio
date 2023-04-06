@@ -208,39 +208,25 @@
 
 
 /* End Functionnality Page */
+/* CSS Connection Page */
 
-@media (min-width:425px){
-    .box__content-flex{
-        flex-direction: row;
-    }
-
-    .box__content-flex>.collaborative__tool{
-        display: flex;
-        flex-direction: column;
-        width: 70%;
-        padding: 2rem;
-        text-align: justify;
-        
-    }
-
-    .box__content-flex>.functionnality__tool{
-        display: flex;
-        flex-direction: column;
-        width: 70%;
-        padding: 2rem;
-        text-align: justify;
-        
-    }
-
-    .box__content-flex>.img__homepage{
-        width: 30%;
-    }
-
-    .box__content-flex>.img__functionnality{
-        width: 30%;
-    }
-
+.connection__box{
+    height: 75vh;
 }
+
+/* End Connection Page */
+
+/* CSS doc Page */
+
+.doc__box{
+    min-height: 80vh;
+}
+
+.display-none{
+    display: none;
+}
+
+/* End docn Page */
 
 
 @media (min-width:768px){
@@ -313,8 +299,46 @@
         color: #ffffff;
     }
     
+    .box__content-flex>.img__homepage{
+        display: none;
+    }
     
 
 }
+
+@media (min-width:1024px){
+    .box__content-flex{
+        flex-direction: row;
+    }
+
+    .box__content-flex>.collaborative__tool{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        padding: 2rem;
+        text-align: justify;
+        
+    }
+
+    .box__content-flex>.functionnality__tool{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        padding: 2rem;
+        text-align: justify;
+        
+    }
+
+    .box__content-flex>.img__homepage{
+        display: block;
+        width: 30%;
+    }
+
+    .box__content-flex>.img__functionnality{
+        width: 30%;
+    }
+
+}
+
 
 
