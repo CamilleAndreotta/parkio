@@ -42,7 +42,7 @@
             <tr>
                 <td class="mobile__display-none" >{{ external_location.id }}</td>
                 <td>{{ external_location.externalUser }}</td>
-                <td class="mobile__display-none">{{ external_location.email }}</td>
+                <td class="mobile__display-none"><a href="mailto:{{ external_location.email }}">{{ external_location.email }}</a></td>
                 <td class="mobile__display-none">{{ external_location.phone }}</td>
                 <td class="mobile__display-none">{{ external_location.message }}</td>
                 <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
@@ -88,7 +88,7 @@
             <tr>
                 <td class="mobile__display-none" >{{ external_location.id }}</td>
                 <td>{{ external_location.externalUser }}</td>
-                <td class="mobile__display-none">{{ external_location.email }}</td>
+                <td class="mobile__display-none"><a href="mailto:{{ external_location.email }}">{{ external_location.email }}</a></td>
                 <td class="mobile__display-none">{{ external_location.phone }}</td>
                 <td class="mobile__display-none">{{ external_location.message }}</td>
                 <td>{{ external_location.dateStart ? external_location.dateStart|date('Y-m-d') : '' }}</td>
