@@ -15,16 +15,61 @@
             <h2>Mon profil</h2>
             <div> <span>+</span> </div>
         </div>
-        <div class="text__area-profil display-none">
-            <p>teste</p>
+        <div class="text__area text__area-profil display-none">
+            <p>La page mon profil vous permet d'avoir accès aux informations concernant vos prêts personnels de matériel informatique. 
+            
+            <br>
+            <br>
+
+            <strong> Dans la section mon matériel, vous avez accès aux prêts en cours avec différentes informations : </strong>
+            <ul>
+                <li>La date de début : Il s'agit de la date de mise à disposition du matériel</li>
+                <li>La date de fin : Il s'agit de la date à laquelle le matériel doit être restitué. Lorsqu'il n'y a pas de date de fin, cela signifie que le matériel est mis à disposition sans durée déterminée.</li>
+                <li>Informations : Il s'agit du matériel mis à disposition dans le ticket. Pour plus d'informations concernant le matériel, cliquez sur le bouton "Voir" dans la colonne action </li>
+            </ul>
+
+            Vous trouverez également dans cette section la possibilité de faire vos demandes personnelles de matériel informatique en cliquant sur le bouton "Demander un matériel".
+
+            <br>
+            <br>
+
+            <strong> Demander un matériel : </strong>
+
+            En cliquant sur le bouton, vous accederez au formulaire de demande de prêt de matériel. Vous pouvez indiquer une date de début de location souhaitée, une date de fin de location ainsi que le matériel souhaité dans le champ informations complémentaires. 
+            <br>
+            Par exemple je souhaite emprunter un videoprojecteur pour une journée à la date du 01/03/2023, je vais indiquer dans la date de début et de fin de location le 01/01/2023 et dans le champ informations complémentaires Videoprojecteur. 
+            <br>
+            La demande est ensuite transmise au référent informatique pour qu'il puisse la traiter et vous assigner le matériel.
+
+            <br>
+            <br>
+            <strong> Mes demandes en cours de traitements : </strong>
+            Dans cette section vous retrouverez vos demandes personnelles de prêts pas encore traitées par le référent informatique. Une fois la demande traitée, celle-ci sera automatiquement passée dans la section "Mon Matériel". 
+            </p>
         </div>
 
         <div class="bloc__title-btn doc__user-myAsk">
             <h2>Mes demandes de prêts</h2>
             <div> <span>+</span> </div>
         </div>
-        <div class="text__area-myAsk display-none">
-            <p>teste</p>
+        <div class="text__area text__area-myAsk display-none">
+            <p>La page mes demandes de prêts vous permet d'avoir accès aux informations concernant vos prêts de matériel informatique pour une personne extérieures à la structure (partenaires, clients, etc.). 
+            
+            <br>
+            <br>
+
+            <strong> Dans la section "Les locations en cours" vous avez accès à différentes informations : </strong>
+            <ul>
+                <li>Nom et prénom : Il s'agit du nom et prénom de la personne à qui vous avez fait une demande de prêt</li>
+                <li>Email et Tel : Ces informations vous permet d'avoir accès aux coordonnées de l'emprunteur afin de pouvoir le contacter en cas de besoin</li>
+                <li>La date de début : Il s'agit de la date de mise à disposition du matériel</li>
+                <li>La date de fin : Il s'agit de la date à laquelle le matériel doit être restitué.</li>
+                <li>Informations : Il s'agit du matériel mis à disposition dans le ticket. Pour plus d'informations concernant le matériel, cliquez sur le bouton "Voir" dans la colonne action </li>
+            </ul>
+
+            <strong> Mes demandes en cours de traitements : </strong>
+            Dans cette section vous retrouverez vos demandes de prêts pas encore traitées par le référent informatique. Une fois la demande traitée, celle-ci sera automatiquement passée dans la section "Les locations en cours". 
+            </p>
         </div>
 
 
@@ -32,8 +77,26 @@
             <h2>Faire un demande de prêts</h2>
             <div> <span>+</span> </div>
         </div>
-        <div class="text__area-doAsk display-none">
-            <p>teste</p>
+        <div class="text__area  text__area-doAsk display-none">
+             <p>L'onglet "Faire une demande" dans le menu permet d'accéder au formulaire de demande de prêt pour une personne externe à la structure (partenaires, clients, etc.). 
+            
+            <br>
+            <br>
+
+            <strong> Les champs à compléter : </strong>
+            <ul>
+                <li>Nom et prénom : Il s'agit du nom et prénom de la personne à qui vous avez fait une demande de prêt</li>
+                <li>Email et Tel : Ces informations vous permet d'avoir accès aux coordonnées de l'emprunteur afin de pouvoir le contacter en cas de besoin</li>
+                <li>La date de début : Il s'agit de la date de mise à disposition du matériel</li>
+                <li>La date de fin : Il s'agit de la date à laquelle le matériel doit être restitué.</li>
+                <li>Informations : Il s'agit du matériel mis à disposition dans le ticket. Pour plus d'informations concernant le matériel, cliquez sur le bouton "Voir" dans la colonne action </li>
+            </ul>
+
+            Tous les champs sont requis pour faire une demande de location.
+
+
+            
+            </p>
         </div>
 
 
@@ -45,7 +108,7 @@
 
 </div>
 
- <script src="{{asset('js/docUser.js')}}"></script>
+<script src="{{asset('js/docUser.js')}}"></script>
 
 {% endblock %}
 

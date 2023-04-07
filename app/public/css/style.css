@@ -226,6 +226,26 @@
     display: none;
 }
 
+.text__area{
+    padding: 1rem;
+    text-align: justify;
+}
+
+.text__area>div:last-child{
+    display: block;
+    width: 100px;
+    padding : 0.5rem 0.5rem; 
+    background-color: red;
+    text-align: center;
+    margin: auto;
+    color :white;
+    border-radius: 5px;
+    transform: scale(1);
+}
+
+.text__area>div:last-child:hover{
+    transform: scale(0.9);
+}
 /* End docn Page */
 
 
