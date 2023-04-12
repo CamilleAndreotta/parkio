@@ -208,6 +208,63 @@
 
 
 /* End Functionnality Page */
+
+/* CSS 403*/
+
+.bg_error{
+    display: flex;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_403{
+    background-image: url('../images/forbidden.webp');
+    background-size: cover;
+}
+
+.img_404{
+    background-image: url('../images/404.jpeg');
+    background-size: cover;
+}
+
+.bg_error>div{
+    width: 50%;
+    padding: 2rem 2rem;
+    background-color: #DC7633;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.bg_error>div>p{
+   font-size: 1rem;
+}
+
+.bg_error>div>span{
+    opacity: initial;
+    color: #ffffff;
+}
+
+
+
+/* End CSS 403*/
+
+/* CSS Crédit */
+
+.creditList li a{
+    text-decoration: none;
+    color:#DC7633;
+    font-weight: bold;
+}
+
+.creditList li a:hover{
+    color:#283747;
+}
+
+/* End Crédit */
+
 /* CSS Connection Page */
 
 .connection__box{
@@ -246,7 +303,7 @@
 .text__area>div:last-child:hover{
     transform: scale(0.9);
 }
-/* End docn Page */
+/* End doc Page */
 
 
 @media (min-width:768px){

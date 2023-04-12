@@ -7,10 +7,20 @@
 <div class="index__container"> 
 
     <div class="home__container-content">
-        <p>
-            Vous n'avez pas l'autorisation d'accéder à la page demandée. Cliquez sur le lien pour revenir à la page d'accueil :
-            <a href="{{ path('home')}}">Retour à l'accueil</a>
-        </p>
+
+        <div class="bg_error img_403">
+            
+            <div>
+                <span>403</span>
+                <p>
+                Vous n'avez pas l'autorisation d'accéder à la page demandée. Cliquez sur le lien pour revenir à la page d'accueil :
+                 <a href="{{ path('home')}}">Retour à l'accueil</a>
+                </p>
+            </div>
+
+        </div>
+
+        
     </div>
 
 </div>

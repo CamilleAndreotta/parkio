@@ -28,6 +28,10 @@ class UserType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez saisir votre adresse mail'
                     ]),
+                    new Regex([
+                        'pattern' => "/^([a-z-0-9]*[-|.|_][a-z-0-9]*@[a-z]*.[a-z]*)|([a-z-0-9]*@[a-z]*.[a-z]*)$/",
+                        'message' => "Email invalide"
+                    ])
                 ],
                 'label'=> 'Email de l\'utilisateur',
                 'mapped'=> true, 
@@ -53,8 +57,10 @@ class UserType extends AbstractType
                         'min' => 12,
                         'minMessage' => 'Votre mot de passe doit contenir 12 caractères'
                     ]),
-                    new Regex(
-                        "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/"),
+                    new Regex([
+                        'pattern' => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/",
+                        'message' => "Le mot de passe doit contenir au minimum 12 caractères, une majuscule, un chiffre et un caractère spécial"
+                        ])
                 ],
                 'mapped'=> true, 
                 'required' => true, 
