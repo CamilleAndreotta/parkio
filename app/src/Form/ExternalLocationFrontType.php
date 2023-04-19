@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ExternalLocationFrontType extends AbstractType
 {
@@ -28,11 +29,25 @@ class ExternalLocationFrontType extends AbstractType
                 'label' => 'Nom et prénom de l\'utilisateur'
             ])
             ->add('email', EmailType::class, [
-                'constraints' => new NotBlank(),
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir l\'adresse mail du demandeur'
+                    ]),
+                    new Regex([
+                        'pattern' => "/^([a-z-0-9]*[-|.|_][a-z-0-9]*@[a-z]*.[a-z]*)|([a-z-0-9]*@[a-z]*.[a-z]*)$/",
+                        'message' => "Email invalide"
+                    ])
+                ],
                 'label'=> 'Email de l\'emprunteur',
             ])
             ->add('phone', TextType::class, [
-                'constraints' => new NotBlank(),
+                'constraints' => [
+                    new NotBlank(['message'=>'Veuillez saisir le numéro de téléphone du demandeur']),
+                    new Regex([
+                        'pattern' => '/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/',
+                        'message' => 'Numéro de téléphone invalide'
+                    ])
+            ],
                 'label' => 'Numéro de téléphone de l\'emprunteur ',
             ])
             ->add('message', TextareaType::class, [
