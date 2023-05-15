@@ -167,10 +167,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `internal_user`) VALUES
-(1,	'camille@camille',	'[\"ROLE_USER\", \"ROLE_ADMIN\"]',	'$2y$13$X4Hi4SR8vZBr4by8l9CJ2eUA2QqoXLY7ddx85BBSsax8rvm9MMYwS',	'Andreotta Camille'),
-(2,	'david.christophe@gmail.com',	'[]',	'$2y$13$9kctJdfMO6sNVH66h7v6ZemdU.URzgvTIq6AJKGXb3rGivYsyXDF.',	'David Christrophe'),
-(3,	'berger.remi@gmail.com',	'[]',	'$2y$13$mDegVytJilaZ6dWB3X4P0O6UjNgeMcwO0BuzgF0K6dcOBlGU8qhPG',	'Berger Rémi'),
-(4,	'landreau.stephanie@gmail.com',	'[]',	'$2y$13$EE9Rg9JCnEoqWBtbIe2EXuQQmdATgdFQTvETj92wycsH9Qk/9RAEC',	'Landreau Stéphanie');
+(1,	'cam.andreotta85@gmail.com',	'[\"ROLE_USER\", \"ROLE_ADMIN\"]',	'$2y$13$X4Hi4SR8vZBr4by8l9CJ2eUA2QqoXLY7ddx85BBSsax8rvm9MMYwS',	'Andreotta Camille');
 
 DROP TABLE IF EXISTS `videoprojector`;
 CREATE TABLE `videoprojector` (

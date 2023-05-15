@@ -23,7 +23,6 @@
                 <th>Nom et prénom</th>
                 <th class="mobile__display-none">Email</th>
                 <th class="mobile__display-none">Roles</th>
-                <th class="mobile__display-none">Password</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -34,7 +33,6 @@
                 <td>{{ user.internalUser }}</td>
                 <td class="mobile__display-none">{{ user.email }}</td>
                 <td class="mobile__display-none">{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td class="mobile__display-none">{{ user.password }}</td>
                 <td>
                     <a class="index__btn-show" href="{{ path('app_back_user_show', {'id': user.id}) }}">Voir</a>
                     <a class="index__btn-edit" href="{{ path('app_back_user_edit', {'id': user.id}) }}">Modifier</a>
