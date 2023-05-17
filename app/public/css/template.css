@@ -695,3 +695,10 @@ table{
 
 
 }
+
+@media (min-height:800px){
+
+    .nav__link-size{
+        font-size: 1em;
+    }
+}
