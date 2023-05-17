@@ -9,6 +9,7 @@ delete button color : #E74C3C
 .main-container{
     display:flex;
     flex-direction: column;
+    width: 100%;
 }
 
 /* CSS Header */
@@ -99,14 +100,13 @@ img.header__logo{
 /* CSS Navbar */
 
 .nav__link-size{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .nav__side{
     flex-direction: column;
     background-color: #283747;
     position:fixed; 
-    width: 100vw;
     height: 100vh !important;
     bottom:0;
     z-index:99;
@@ -532,7 +532,7 @@ table{
 /* End CSS list material*/
 /* CSS content */
 .content-container{
-    width: 100vw;
+    width: 100%;
     flex-direction: column;
     padding: 0;
     box-sizing: border-box;
@@ -622,7 +622,7 @@ table{
         flex-direction: column;
         background-color: #283747;
         position:fixed; 
-        width: 40vw;
+        width: 40%;
         height: 100vh;
         bottom:0;
         z-index:99;
@@ -658,14 +658,14 @@ table{
 @media (min-width:1024px){
 
     .nav__side{
-        width: 25vw;
+        width: 25%;
     }
 
     .content__mobile-close{
         display: flex;
-        width: 80vw;
+        width: 80%;
         position: relative;
-        left: 20vw;
+        left: 20%;
         z-index: 1;
     }
 
@@ -690,14 +690,8 @@ table{
 @media (min-width:1440px){
 
     .nav__side{
-        width: 20vw;
+        width: 20%;
     }
 
 
-}
-
-@media (min-height: 850px){
-    ul{
-        font-size: 1em !important;
-    }
 }
