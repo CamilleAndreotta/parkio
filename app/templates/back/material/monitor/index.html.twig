@@ -18,6 +18,12 @@
 
     <div class="index__container-table">
 
+    <div class="spaceFilter__onlyInternalMaterial row d-flex justify-content-center flex-sm-wrap">
+
+        <!--Zone nav filter JS-->
+    
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -30,16 +36,30 @@
         </thead>
         <tbody>
         {% for monitor in monitors %}
-            <tr>
-                <td class="mobile__display-none">{{ monitor.id }}</td>
-                <td>{{ monitor.model }}</td>
-                <td class="mobile__display-none">{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ monitor.status }}</td>
-                <td>
-                    <a class="index__btn-show" href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">Modifier</a>
-                </td>
-            </tr>
+            {% if monitor.status == "Not Available" %}
+                <tr data-status="notAvailable" >
+                    <td class="mobile__display-none">{{ monitor.id }}</td>
+                    <td>{{ monitor.model }}</td>
+                    <td class="mobile__display-none">{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ monitor.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if monitor.status == "Available" %}
+                <tr data-status="available">
+                    <td class="mobile__display-none">{{ monitor.id }}</td>
+                    <td>{{ monitor.model }}</td>
+                    <td class="mobile__display-none">{{ monitor.purchaseDate ? monitor.purchaseDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ monitor.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_monitor_show', {'id': monitor.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_monitor_edit', {'id': monitor.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">Aucuns écrans trouvés</td>
@@ -51,4 +71,7 @@
     </div>
 
 </div>
+
+<script src="{{asset('js/navFilterOnlyInternalMaterial.js')}}"></script>
+
 {% endblock %}

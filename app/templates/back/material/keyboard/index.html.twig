@@ -18,6 +18,12 @@
 
     <div class="index__container-table">
 
+    <div class="spaceFilter__onlyInternalMaterial row d-flex justify-content-center flex-sm-wrap">
+
+        <!--Zone nav filter JS-->
+    
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -29,15 +35,28 @@
         </thead>
         <tbody>
         {% for keyboard in keyboards %}
-            <tr>
-                <td class="mobile__display-none">{{ keyboard.id }}</td>
-                <td>{{ keyboard.model }}</td>
-                <td>{{ keyboard.status }}</td>
-                <td>
-                    <a class="index__btn-show" href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">Modifier</a>
-                </td>
-            </tr>
+            {% if keyboard.status == "Not Available" %}
+                <tr data-status="notAvailable">
+                    <td class="mobile__display-none">{{ keyboard.id }}</td>
+                    <td>{{ keyboard.model }}</td>
+                    <td>{{ keyboard.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if keyboard.status == "Available" %}
+                <tr data-status="available">
+                    <td class="mobile__display-none">{{ keyboard.id }}</td>
+                    <td>{{ keyboard.model }}</td>
+                    <td>{{ keyboard.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_keyboard_show', {'id': keyboard.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_keyboard_edit', {'id': keyboard.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">Aucuns claviers trouvés</td>
@@ -50,4 +69,6 @@
 
 
 </div>
+
+<script src="{{asset('js/navFilterOnlyInternalMaterial.js')}}"></script>
 {% endblock %}

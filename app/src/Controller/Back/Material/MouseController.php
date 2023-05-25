@@ -27,7 +27,7 @@ class MouseController extends AbstractController
     public function index(MouseRepository $mouseRepository): Response
     {
         return $this->render('back/material/mouse/index.html.twig', [
-            'mice' => $mouseRepository->findAll(),
+            'mouses' => $mouseRepository->findAll(),
         ]);
     }
 

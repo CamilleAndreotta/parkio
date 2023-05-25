@@ -18,6 +18,12 @@
 
     <div class="index__container-table">
 
+    <div class="spaceFilter__onlyInternalMaterial row d-flex justify-content-center flex-sm-wrap">
+
+        <!--Zone nav filter JS-->
+    
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -29,17 +35,59 @@
             </tr>
         </thead>
         <tbody>
-        {% for mouse in mice %}
-            <tr>
-                <td class="mobile__display-none">{{ mouse.id }}</td>
-                <td>{{ mouse.model }}</td>
-                <td class="mobile__display-none">{{ mouse.affectation }}</td>
-                <td>{{ mouse.status }}</td>
-                <td>
-                    <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
-                </td>
-            </tr>
+        {% for mouse in mouses %}
+            {% if mouse.status == "Not Available" %}
+                {% if mouse.affectation == "Interne" %}
+                    <tr data-status="notAvailable" data-affection="interne">
+                        <td class="mobile__display-none">{{ mouse.id }}</td>
+                        <td>{{ mouse.model }}</td>
+                        <td class="mobile__display-none">{{ mouse.affectation }}</td>
+                        <td>{{ mouse.status }}</td>
+                        <td>
+                            <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
+                            <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if mouse.affectation == "Externe" %}
+                    <tr data-status="notAvailable" data-affection="externe">
+                        <td class="mobile__display-none">{{ mouse.id }}</td>
+                        <td>{{ mouse.model }}</td>
+                        <td class="mobile__display-none">{{ mouse.affectation }}</td>
+                        <td>{{ mouse.status }}</td>
+                        <td>
+                            <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
+                            <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+            {% if mouse.status == "Available" %}
+                {% if mouse.affectation == "Interne" %}
+                    <tr data-status="available" data-affectation="interne">
+                        <td class="mobile__display-none">{{ mouse.id }}</td>
+                        <td>{{ mouse.model }}</td>
+                        <td class="mobile__display-none">{{ mouse.affectation }}</td>
+                        <td>{{ mouse.status }}</td>
+                        <td>
+                            <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
+                            <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if mouse.affectation == "Externe" %}
+                    <tr data-status="available" data-affectation="externe">
+                        <td class="mobile__display-none">{{ mouse.id }}</td>
+                        <td>{{ mouse.model }}</td>
+                        <td class="mobile__display-none">{{ mouse.affectation }}</td>
+                        <td>{{ mouse.status }}</td>
+                        <td>
+                            <a class="index__btn-show" href="{{ path('app_back_material_mouse_show', {'id': mouse.id}) }}">Voir</a>
+                            <a class="index__btn-edit" href="{{ path('app_back_material_mouse_edit', {'id': mouse.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">Aucunes souris trouvées</td>
@@ -52,4 +100,7 @@
 
 
 </div>
+
+<script src="{{asset('js/navFilterFullMaterial.js')}}"></script>
+
 {% endblock %}

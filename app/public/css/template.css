@@ -144,6 +144,11 @@ img.header__logo{
 
 /* End CSS Navbar */
 
+/* CSS Filter */
+tr.row__display-none {
+    display: none;
+}
+
 /* CSS Footer */
 
 footer{
@@ -427,6 +432,11 @@ footer>ul>li>a:hover{
 table{
     font-size: 0.8rem;
 }
+
+.spaceFilter__onlyInternalMaterial button{
+    width:200px;
+}
+
 
 /* End CSS Index */
 /* CSS Show*/

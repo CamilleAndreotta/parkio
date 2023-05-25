@@ -18,6 +18,12 @@
 
     <div class="index__container-table">
 
+    <div class="spaceFilter__onlyInternalMaterial row d-flex justify-content-center flex-sm-wrap">
+
+        <!--Zone nav filter JS-->
+    
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -30,16 +36,30 @@
         </thead>
         <tbody>
         {% for videoprojector in videoprojectors %}
-            <tr>
-                <td class="mobile__display-none">{{ videoprojector.id }}</td>
-                <td>{{ videoprojector.model }}</td>
-                <td class="mobile__display-none">{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
-                <td>{{ videoprojector.status }}</td>
-                <td>
-                    <a class="index__btn-show" href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">Voir</a>
-                    <a class="index__btn-edit" href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">Modifier</a>
-                </td>
-            </tr>
+            {% if videoprojector.status == "Not Available" %}
+                <tr data-status="notAvailable">
+                    <td class="mobile__display-none">{{ videoprojector.id }}</td>
+                    <td>{{ videoprojector.model }}</td>
+                    <td class="mobile__display-none">{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ videoprojector.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if videoprojector.status == "Available" %}
+                <tr data-status="available" >
+                    <td class="mobile__display-none">{{ videoprojector.id }}</td>
+                    <td>{{ videoprojector.model }}</td>
+                    <td class="mobile__display-none">{{ videoprojector.purchaseDate ? videoprojector.purchaseDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ videoprojector.status }}</td>
+                    <td>
+                        <a class="index__btn-show" href="{{ path('app_back_material_videoprojector_show', {'id': videoprojector.id}) }}">Voir</a>
+                        <a class="index__btn-edit" href="{{ path('app_back_material_videoprojector_edit', {'id': videoprojector.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">Aucuns vidéoprojecteur trouvés</td>
@@ -51,4 +71,7 @@
     </div>
 
 </div>
+
+<script src="{{asset('js/navFilterOnlyInternalMaterial.js')}}"></script>
+
 {% endblock %}
