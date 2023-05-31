@@ -108,6 +108,7 @@ img.header__logo{
     background-color: #283747;
     position:fixed; 
     height: 100vh !important;
+    width:100%;
     bottom:0;
     z-index:99;
     padding-top: 12vh;
